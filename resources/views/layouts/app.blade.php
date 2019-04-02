@@ -1,80 +1,113 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="seed tracker application">
+    <meta name="author" content="">
+    <meta name="theme-color" content="#0A3764">
+    <title>Seed Tracker App</title>
+    <link rel="stylesheet" href="{{asset('css/tmp/style.css')}}" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+<div class="container_global">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href=/en/>
+                    <img id="link_presidence" alt="" src="/images/seedtrackerlogo.png" style="width: 33%;padding: 4% 0;">
+                </a>
+            </div>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        @php
+            $route = Route::currentRouteName();
+        @endphp
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Home
-                    </a>
-                </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{{$route === 'welcome' ? 'active' : ''}}">
+                        <a href="{{url('/')}}">
+                            Home <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="{{$route === 'about' ? 'active' : ''}}">
+                        <a href="{{route('about')}}">About</a>
+                    </li>
+                    <li class="{{$route === 'faq' ? 'active' : ''}}">
+                        <a href="{{route('faq')}}">Frequently Asked Questions</a>
+                    </li>
+                    <li class="{{$route === 'contact' ? 'active' : ''}}">
+                        <a href="{{route('contact')}}">Contact us</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a title="English" href="#">
+                            EN
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- /.container-fluid -->
+    </nav>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+    @yield('content')
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+    <div class="footer">
+        <div class="container-fluid">
+            <!-- Modal -->
+            <div class="modal fade" id="mlModal" role="dialog">
+                <!-- Modal Content-->
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Legal Notice</h4>
+                        </div>
+                        <div class="modal-body">
+                            The seed tracker website is the exclusive property of IITA Seed Tracker Team.
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        @yield('content')
+            <a href='{{url('/')}}'>
+                <img style="width: 100px;height: 53px;margin: 1%;" id="link_evisa" alt="" src="/images/seedtrackerlogo.png">
+            </a>
+            <footer class="container-fluid text-center foot">
+                <div class="copyrights">
+                    <a class="link" href="{{url('/')}}">
+                        Home                </a>
+                    <a class="link" href="{{route('about')}}">
+                        About
+                    </a>
+                    <a class="link" href="{{route('faq')}}">
+                        Frequently Asked Questions
+                    </a>
+                    <a class="link" href="{{route('contact')}}">
+                        Contact us
+                    </a>
+                    <a class="mentions right" href="#" data-toggle="modal" data-target="#mlModal" id="" >
+                        Legal Notice
+                    </a>
+                </div>
+            </footer>
+        </div>
     </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{asset('js/tmp/script.js')}}"></script>
+<script src="{{asset('js/tmp/script.js')}}"></script>
 </body>
+
 </html>

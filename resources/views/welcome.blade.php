@@ -1,116 +1,61 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>IITA</title>
+@section('content')
+    <div class="body_contain">
+        <div class="container-fluid">
+            <div class="site-heading">
+                <h1>Seed Tracker Application</h1>
+            </div>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div id="confirm-msg" class="alert alert-dismissible" role="alert"></div>
+                <!-- Indicators -->
+                <ol class="carousel-indicators hidden">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="seed-a.jpeg" alt="" />
+                    </div>
+                    <div class="item">
+                        <img src="seed-a.jpeg" alt="" />
+                    </div>
+                    <div class="item">
+                        <img src="seed-a.jpeg" alt="" />
+                    </div>
+                </div>
 
-    <link href="{{asset('tinyslide/css/tinyslide.css')}}" rel="stylesheet" />
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
-            height: 100vh;
-            margin: 0;
-        }
+                <!-- Left and right controls -->
+                <div class="row mybuttonrow">
+                    @if(auth()->check())
+                        <a href="{{route('home')}}" class="btn btn-primary btn-lg col-sm-4 left mybuttonrow-left">
+                            <span class="tx">Dashboard</span>
+                        </a>
+                    @else
+                        <a href="{{route('register')}}" class="btn btn-primary btn-lg col-sm-4 left mybuttonrow-left">
+                            <span class="tx">New application</span>
+                        </a>
+                    @endif
+                    @if(auth()->check())
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                           class="btn btn-primary btn-lg col-sm-4 right mybuttonrow-right">
+                            <span class="tx">Logout here</span>
+                        </a>
 
-        .full-height {
-            height: 100vh;
-        }
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    @else
+                            <a href="{{route('login')}}" class="btn btn-primary btn-lg col-sm-4 right mybuttonrow-right" id="check-status">
+                                <span class="tx">Login here</span>
+                            </a>
+                    @endif
+                </div>
+            </div>
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .top-left{
-            position: absolute;
-            left: 10px;
-            top: 18px;
-        }
-
-        .top-left a,.top-right a{
-            text-decoration: none;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .content {
-            text-align: center;
-            width: 80%;
-            height: 78vh;
-        }
-
-        .title {
-            font-size: 42px;
-        }
-
-        .m-b-md {
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-    <div class="top-left links">
-        <a href="{{ url('/') }}">Home</a>
-    </div>
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @if (Auth::check())
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ url('/login') }}">Login</a>
-                <a href="#" style="margin: 0 10px;">|</a>
-                <a href="{{ url('/register') }}">Register</a>
-                <a href="#" style="margin: 0 10px;">|</a>
-                <a href="{{ url('/register') }}">&#9993; Contact</a>
-            @endif
         </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Seed Tracker
-        </div>
-        <section id="tiny" class="tinyslide">
-            <aside class="slides">
-                <figure> <img src="seed-a.jpeg" alt="">
-                    {{--<figcaption> Description </figcaption>--}}
-                </figure>
-                <figure> <img src="seed-b.jpeg" alt="">
-                    {{--<figcaption> Description </figcaption>--}}
-                </figure>
-                <figure> <img src="seed-c.jpeg" alt="">
-                    {{--<figcaption> Description </figcaption>--}}
-                </figure>
-            </aside>
-        </section>
     </div>
-</div>
-</body>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="{{asset('tinyslide/js/tinyslide.js')}}"></script>
-<script>
-    var tiny = $('#tiny').tiny().data('api_tiny');
-</script>
-</html>
+@endsection
