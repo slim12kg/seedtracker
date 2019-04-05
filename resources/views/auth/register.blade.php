@@ -52,7 +52,25 @@
                                 @endif
                             </div>
                         </div>
-
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <label for="email" class="col-md-4 control-label">Registration Type</label>
+                                <div class="col-md-6 mt-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" required type="radio" name="user_type" id="seed_company" value="seed company">
+                                        <label class="form-check-label font-normal" for="seed_company">
+                                            Seed Company
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" required type="radio" name="user_type" id="community_seed_producer" value="community seed producer">
+                                        <label class="form-check-label font-normal" for="community_seed_producer">
+                                            Community Seed Producer
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 

@@ -18,7 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
-Route::get('/company-profile', 'HomeController@company')->name('company-profile');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/contact-us', 'HomeController@contact')->name('contact');
+
+Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
+    $route->get('/company-profile', 'RegistrationController@company')->name('company.registration');
+    $route->get('/edit', 'AccountController@edit')->name('account.edit');
+    $route->get('/update-password', 'AccountController@editPassword')->name('account.password');
+});

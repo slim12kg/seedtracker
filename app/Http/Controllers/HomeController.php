@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->only('home','company');
+        $this->middleware('auth')->only('home');
     }
 
     /**
@@ -24,11 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    }
-
-    public function company()
-    {
-        return view('company-profile');
     }
 
     public function about()

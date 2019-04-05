@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone'
+        'name', 'email', 'password','phone','user_type'
     ];
 
     /**
@@ -30,5 +30,20 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->firstname.' '.$this->lastname;
+    }
+
+    public function seedCompany()
+    {
+        return $this->user_type === 'seed company';
+    }
+
+    public function communitySeedProducer()
+    {
+        return $this->user_type === 'community seed producer';
+    }
+
+    public function registeredBusiness()
+    {
+        return (boolean) $this->registered;
     }
 }

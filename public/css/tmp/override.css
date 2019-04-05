@@ -1,0 +1,40 @@
+.font-normal{
+    font-weight:normal !important;
+}
+
+.p-3px{
+    padding: 3px;
+}
+
+div.radio label, div.checkbox label {
+    padding-bottom: 10px;
+}
+
+.mt-none{
+    margin-top: 0 !important;
+}
+
+.mb-none{
+    margin-bottom: 0 !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.p-0 {
+    padding: 0px;
+}
+
+.avatar-panel {
+    padding-right: 0;
+    border: 1px solid #2f7027;
+}
+
+.avatar-desc {
+    padding: 5% 2%;
+}
+
+div.divider{
+    border-bottom: 1px solid #80808052;
+}

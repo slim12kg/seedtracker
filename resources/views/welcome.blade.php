@@ -36,7 +36,7 @@
                         </a>
                     @else
                         <a href="{{route('register')}}" class="btn btn-primary btn-lg col-sm-4 left mybuttonrow-left">
-                            <span class="tx">New application</span>
+                            <span class="tx">New registration</span>
                         </a>
                     @endif
                     @if(auth()->check())

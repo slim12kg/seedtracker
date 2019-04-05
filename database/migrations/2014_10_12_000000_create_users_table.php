@@ -18,7 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->string('email')->unique();
+            $table->string('user_type')->default('seed company');
             $table->string('password');
+            $table->boolean('registered')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

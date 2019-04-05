@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#0A3764">
     <title>Seed Tracker App</title>
     <link rel="stylesheet" href="{{asset('css/tmp/style.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/tmp/override.css')}}" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
 </head>
 <body>
@@ -107,7 +108,21 @@
 </div>
 
 <script src="{{asset('js/tmp/script.js')}}"></script>
-<script src="{{asset('js/tmp/script.js')}}"></script>
+<script src="{{asset('js/tmp/script-01.js')}}"></script>
+<script>
+    function addMore(e){
+        var group = $(e).closest('.group-content');
+        var newGroup = group.clone();
+
+        newGroup.find('button').replaceWith('<button class="btn btn-danger btn-sm" title="remove" onclick="event.preventDefault();removeGroup(this)"> &minus;</button>');
+        group.after(newGroup);
+    }
+
+    function removeGroup(e) {
+        $(e).closest('.group-content').remove();
+    }
+</script>
+@yield('scripts')
 </body>
 
 </html>
