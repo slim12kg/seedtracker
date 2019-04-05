@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','user_type'
+        'firstname', 'lastname','email', 'password','phone','user_type'
     ];
 
     /**
@@ -45,5 +45,10 @@ class User extends Authenticatable
     public function registeredBusiness()
     {
         return (boolean) $this->registered;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->firstname.' '. $this->lastname;
     }
 }
