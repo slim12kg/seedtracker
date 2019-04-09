@@ -6,7 +6,7 @@
     <div class="panel mb-none">
         <div class="panel-body avatar-panel">
             <div class="col-md-4 p-0">
-                <img src="{{asset(auth()->user()->profile_image?: 'profile/avatar.png')}}" class="img-responsive img-circle"  alt="profile photo">
+                <img src="{{asset(auth()->user()->profile_image?: 'storage/profile/avatar.png')}}" class="img-responsive img-circle"  alt="profile photo">
             </div>
             <div class="col-md-8 avatar-desc">
                 <div class="col-md-12 p-0">

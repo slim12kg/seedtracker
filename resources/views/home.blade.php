@@ -16,7 +16,7 @@
 
                     Welcome {{auth()->user()->name}}, you are now logged in!
                     <hr>
-                    @if(!auth()->user()->registration)
+                    @if(!auth()->user()->registered)
                         <div class="alert alert-danger text-left">
                             Next you need to complete your <strong>company profile</strong> registration.
                             <a href="{{route('company.registration')}}">Click here</a>

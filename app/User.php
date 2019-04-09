@@ -56,4 +56,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Registration::class);
     }
+
+    public function updateRegistration($data)
+    {
+        if($this->registration) $this->registration()->update($data);
+
+        $this->registration()->create($data);
+
+        return $this->registration;
+    }
 }
