@@ -25,5 +25,7 @@ Route::get('/contact-us', 'HomeController@contact')->name('contact');
 Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->get('/company-profile', 'RegistrationController@company')->name('company.registration');
     $route->get('/edit', 'AccountController@edit')->name('account.edit');
+    $route->put('/edit', 'AccountController@update')->name('account.update');
     $route->get('/update-password', 'AccountController@editPassword')->name('account.password');
+    $route->put('/update-password', 'AccountController@updatePassword')->name('password.update');
 });

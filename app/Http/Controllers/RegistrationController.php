@@ -8,6 +8,8 @@ class RegistrationController extends Controller
 {
     public function company()
     {
-        return view('registration-form');
+        $registration = auth()->user()->registration;
+
+        return view('registration-form',compact('registration'));
     }
 }

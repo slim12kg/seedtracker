@@ -6,6 +6,10 @@
     padding: 3px;
 }
 
+.mb-0point5{
+    margin-bottom: 0.5%;
+}
+
 div.radio label, div.checkbox label {
     padding-bottom: 10px;
 }

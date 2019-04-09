@@ -63,8 +63,18 @@
         </div><!-- /.container-fluid -->
     </nav>
 
-    @yield('content')
+    <div class="container">
+        @if(session()->has('notification'))
+            <div class="alert alert-info alert-dismissible mb-none" style="margin-top:30px" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Notification: </strong> {{session('notification')}}
+            </div>
+        @endif
 
+        @yield('content')
+    </div>
     <div class="footer">
         <div class="container-fluid">
             <!-- Modal -->
@@ -108,7 +118,8 @@
 </div>
 
 <script src="{{asset('js/tmp/script.js')}}"></script>
-<script src="{{asset('js/tmp/script-01.js')}}"></script>
+{{--<script src="{{asset('js/tmp/script-01.js')}}"></script>--}}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     function addMore(e){
         var group = $(e).closest('.group-content');

@@ -1,7 +1,0 @@
-{
-  "name": "negnet/tinyslide",
-  "description": "A smallish javascript slider",
-  "license": "GPL-3.0+",
-  "type": "js",
-  "require": {}
-}

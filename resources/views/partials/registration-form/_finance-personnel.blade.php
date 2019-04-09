@@ -27,7 +27,8 @@
         </div>
         <div class="col-md-6 mb-3">
             <label for="validationCustom06">Upload Evidence of Incorporation</label>
-            <input type="file" class="form-control p-3px" id="validationCustom06">
+            <input type="file" class="form-control p-3px" accept=".jpeg,.pdf,application/pdf,image/jpeg" id="validationCustom06">
         </div>
     </div>
+    {{--<div class="col-md-12" style="margin-bottom: 3%"></div>--}}
 @endif
