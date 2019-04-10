@@ -125,6 +125,7 @@
         var group = $(e).closest('.group-content');
         var newGroup = group.clone();
 
+        newGroup.find('input').val('');
         newGroup.find('button').replaceWith('<button class="btn btn-danger btn-sm" title="remove" onclick="event.preventDefault();removeGroup(this)"> &minus;</button>');
         group.after(newGroup);
     }

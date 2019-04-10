@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Registration;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,9 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Registration $registration)
     {
-        return view('home');
+        $pending = $registration->where('application_status','pending')->count();
+
+        return view('home',compact('pending'));
     }
 
     public function about()

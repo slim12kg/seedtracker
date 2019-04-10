@@ -25,7 +25,16 @@
         </a>
         <a href="{{route('account.edit')}}" class="list-group-item list-group-item-action {{$route === 'account.edit' ? 'active' : ''}}">Edit Profile</a>
         <a href="{{route('account.password')}}" class="list-group-item list-group-item-action {{$route === 'account.password' ? 'active' : ''}}">Update Password</a>
-        <a href="{{route('company.registration')}}" class="list-group-item list-group-item-action {{$route === 'company.registration' ? 'active' : ''}}">Company Registration</a>
+        @if(auth()->user()->is_admin)
+            <a href="{{route('applications.review')}}" class="list-group-item list-group-item-action {{$route === 'applications.review' ? 'active' : ''}}">
+                Review Applications
+            </a>
+        @else
+            <a href="{{route('company.registration')}}" class="list-group-item list-group-item-action {{$route === 'company.registration' ? 'active' : ''}}">
+                {{auth()->user()->seedCompany() ? 'Company' : 'Producer'}} Registration
+            </a>
+        @endif
+
         <a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
            class="list-group-item list-group-item-action">Logout</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

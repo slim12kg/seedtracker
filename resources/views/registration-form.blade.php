@@ -8,7 +8,8 @@
                 <div class="panel-heading">Company Profile</div>
 
                 <div class="panel-body">
-                    <form class="" method="POST" action="#" enctype="multipart/form-data">
+                    <form class="" method="POST" action="{{route('registration.complete')}}" enctype="multipart/form-data">
+                        {{csrf_field()}}
                         <div class="form-row">
                             @include('partials.registration-form._applicant-bio')
                             <div class="col-md-12" style="margin-bottom: 0.1%">&nbsp;</div>
@@ -31,7 +32,8 @@
                                 <div class="col-sm-12">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="terms" type="checkbox"> Agree to <a href="#">terms and conditions</a>
+                                            <input name="terms" type="checkbox" value="yes" required>
+                                            Agree to <a href="#">terms and conditions</a>
                                         </label>
                                     </div>
                                     @if ($errors->has('terms'))
@@ -58,7 +60,20 @@
                 var option = $(this).val();
 
                 $('#seed_type_selected').text(option);
-            })
+            });
+
+            $('input[name=trainings_received]').on('change',function(){
+                var option = $(this).val();
+                var group = $('#training_group');
+
+                if(option === 'yes'){
+                    group.removeClass('hide');
+                    group.find('input').attr('required',true);
+                }else{
+                    group.addClass('hide');
+                    group.find('input').attr('required',false);
+                }
+            });
         })
     </script>
 @endsection

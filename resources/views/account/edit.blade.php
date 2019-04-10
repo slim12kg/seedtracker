@@ -86,44 +86,47 @@
                                         <div class="col-md-6">
                                             <div class="radio mt-none">
                                                 <label class="radio" for="administrator">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'administrator' ? 'checked' : ''}} id="administrator" value="administrator">Administrator
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'administrator' ? 'checked' : ''}} id="administrator" value="administrator" required>Administrator
                                                 </label>
                                                 <label class="radio" for="agronomy">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) == 'agronomy' ? 'checked' : ''}} id="agronomy" value="agronomy"> Agronomy
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) == 'agronomy' ? 'checked' : ''}} id="agronomy" value="agronomy" required> Agronomy
                                                 </label>
                                                 <label class="radio" for="breeding">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'breeding' ? 'checked' : ''}} id="breeding" value="breeding"> Breeding
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'breeding' ? 'checked' : ''}} id="breeding" value="breeding" required> Breeding
                                                 </label>
                                                 <label class="radio" for="farming">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'farming' ? 'checked' : ''}} id="farming" value="farming"> Farming
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'farming' ? 'checked' : ''}} id="farming" value="farming" required> Farming
                                                 </label>
                                                 <label class="radio" for="seed_business">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'seed business' ? 'checked' : ''}} id="seed_business" value="seed business"> Seed Business
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'seed business' ? 'checked' : ''}} id="seed_business" value="seed business" required> Seed Business
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="radio">
                                                 <label class="radio">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'journalist' ? 'checked' : ''}} id="journalist" value="journalist"> Journalist
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'journalist' ? 'checked' : ''}} id="journalist" value="journalist" required> Journalist
                                                 </label>
                                                 <label class="radio">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'plant health' ? 'checked' : ''}} id="plant_health" value="plant health"> Plant Health
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'plant health' ? 'checked' : ''}} id="plant_health" value="plant health" required> Plant Health
                                                 </label>
                                                 <label class="radio">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'regulator' ? 'checked' : ''}} id="regulator" value="regulator">Regulator
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'regulator' ? 'checked' : ''}} id="regulator" value="regulator" required>Regulator
                                                 </label>
                                                 <label class="radio">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'self employed' ? 'checked' : ''}} id="self_employed" value="self employed"> Self Employed
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'self employed' ? 'checked' : ''}} id="self_employed" value="self employed" required> Self Employed
                                                 </label>
                                                 <label class="radio">
-                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'trader' ? 'checked' : ''}} id="trader" value="trader"> Trader
+                                                    <input type="radio" name="profession" {{old('profession',auth()->user()->profession) === 'trader' ? 'checked' : ''}} id="trader" value="trader" required> Trader
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12" style="margin-bottom: 0.1%"></div>
+                                @else
+                                    <div class="col-md-12" style="margin-bottom: 3%"></div>
                                 @endif
-                                <div style="margin-bottom: 0.1%"></div>
+
                                 <div class="form-rows">
                                     <div class="col-md-12">
                                         <button style="" class="btn btn-primary" type="submit">

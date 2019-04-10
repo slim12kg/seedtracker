@@ -24,6 +24,7 @@ class CreateRegistrationsTable extends Migration
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
+            $table->string('country')->default('Nigeria');
             $table->longText('place_of_businesses')->nullable();
             $table->string('category_of_business')->nullable();
             $table->longText('name_of_proprietors')->nullable();
@@ -44,10 +45,11 @@ class CreateRegistrationsTable extends Migration
             $table->string('trained_seed_analyst')->nullable();
             $table->string('trained_agronomist')->nullable();
             $table->string('finance_to_cover_operation')->nullable();
-            $table->string('evidence_of_equipment')->nullable();
-            $table->boolean('application_status')->nullable();
-            $table->string('certificate_id')->nullable();
+            $table->string('evidence_of_inc')->nullable();
             $table->string('trainings_received')->nullable();
+            $table->date('last_reviewed_by_admin')->nullable();
+            $table->string('application_status')->default('pending');
+            $table->string('certificate_id')->nullable();
             $table->longText('trainings')->nullable();
 
             $table->timestamps();

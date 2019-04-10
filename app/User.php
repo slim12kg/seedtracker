@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname','email', 'password','phone','user_type','gender','profession','profile_image'
+        'firstname', 'lastname','email', 'password','phone','user_type','gender','profession','profile_image','registered'
     ];
 
     /**
@@ -47,6 +47,11 @@ class User extends Authenticatable
         return (boolean) $this->registered;
     }
 
+    public function getIsAdminAttribute()
+    {
+        return $this->user_type === "admin";
+    }
+
     public function getNameAttribute()
     {
         return $this->firstname.' '. $this->lastname;
@@ -59,9 +64,12 @@ class User extends Authenticatable
 
     public function updateRegistration($data)
     {
-        if($this->registration) $this->registration()->update($data);
-
-        $this->registration()->create($data);
+        if($this->registration) {
+            $this->registration()->update($data);
+            $this->update(['registered' => true]);
+        }else{
+            $this->registration()->create($data);
+        }
 
         return $this->registration;
     }
