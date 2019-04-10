@@ -20,11 +20,14 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param Registration $registration
      * @return \Illuminate\Http\Response
      */
     public function index(Registration $registration)
     {
-        $pending = $registration->where('application_status','pending')->count();
+        $pending = $registration->where('application_status','pending')->whereHas('applicant',function($q){
+            $q->where('registered',true);
+        })->count();
 
         return view('home',compact('pending'));
     }
