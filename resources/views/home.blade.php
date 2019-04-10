@@ -23,6 +23,19 @@
                         </div>
                     @endif
 
+                    @if(auth()->user()->registered)
+                        <div class="alert alert-danger text-left">
+                            Application status: <strong class="text-capitalize">{{$status = auth()->user()->registration->application_status}}</strong>.
+                            @if($status !== 'approved')
+                                <br>
+                                Reason: <span>Not specified</span>
+                            @else
+                                <br>
+                                Click <a target="_blank" href="{{route('certificate')}}">here</a> to print your verified certificate
+                            @endif
+                        </div>
+                    @endif
+
                     @if(auth()->user()->is_admin)
                         <div class="alert alert-danger text-left">
                             You have <strong>{{$pending}} Pending</strong> applications to review.

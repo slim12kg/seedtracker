@@ -2,33 +2,33 @@
     @if(auth()->user()->seedCompany())
         <div class="col-md-12">
             <div class="col-md-12" style="margin-bottom: 0.1%">&nbsp;</div>
-            <label>Facilities Available</label>
+            <label>Facilities available</label>
             <div class="col-md-12" style="margin-bottom: 0.1%">&nbsp;</div>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="land_area">Land Area</label>
+            <label for="land_area">Land area (hectares)</label>
             <input type="number" class="form-control" id="land_area" name="land_area" placeholder="Size in hectare(s)" value="{{old('land_area',$registration->land_area)}}" required>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="farm_machinery_implementation">Farm Machinery & Implementation</label>
+            <label for="farm_machinery_implementation">Farm machinery & implementation (qty)</label>
             <input type="number" class="form-control" id="farm_machinery_implementation" name="farm_machinery_implementation" placeholder="Quantity" value="{{old('farm_machinery_implementation',$registration->farm_machinery_implementation)}}" required>
         </div>
         <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
         <div class="col-md-6 mb-3">
-            <label for="seed_processing_grading_equipment">Seed Processing & Grading Equipment</label>
+            <label for="seed_processing_grading_equipment">Seed processing & grading equipment (qty)</label>
             <input type="number" class="form-control" id="seed_processing_grading_equipment" name="seed_processing_grading_equipment" placeholder="Quantity" value="{{old('seed_processing_grading_equipment',$registration->seed_processing_grading_equipment)}}" required>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="validationCustom04">Seed Processing & Packaging Equipment</label>
+            <label for="validationCustom04">Seed processing & packaging equipment (qty)</label>
             <input type="number" class="form-control" id="seed_processing_packaging_equipment" name="seed_processing_packaging_equipment" placeholder="Quantity" value="{{old('seed_processing_packaging_equipment',$registration->seed_processing_packaging_equipment)}}" required>
         </div>
         <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
         <div class="col-md-6 mb-3">
-            <label for="validationCustom03">Seed Storage / Warehouse</label>
+            <label for="validationCustom03">Seed storage / warehouse (qty)</label>
             <input type="number" class="form-control" id="seed_storage_warehouse" name="seed_storage_warehouse" placeholder="Quantity" value="{{old('seed_storage_warehouse',$registration->seed_storage_warehouse)}}" required>
         </div>
         <div class="col-md-6 mb-3">
-            <label for="seed_testing_lab_quality_control_equipment">Seed Testing Lab. & Quality Control Equipment</label>
+            <label for="seed_testing_lab_quality_control_equipment">Seed testing lab. & quality control equipment (qty)</label>
             <input type="number" class="form-control" id="seed_testing_lab_quality_control_equipment" name="seed_testing_lab_quality_control_equipment" placeholder="Quantity" value="{{old('seed_testing_lab_quality_control_equipment',$registration->seed_testing_lab_quality_control_equipment)}}" required>
         </div>
         <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
@@ -36,15 +36,15 @@
 @else
     <div class="col-md-12">
         <div class="col-md-12" style="margin-bottom: 0.1%">&nbsp;</div>
-        <label>Facilities Available</label>
+        <label>Facilities available</label>
         <div class="col-md-12" style="margin-bottom: 0.1%">&nbsp;</div>
     </div>
     <div class="col-md-6 mb-3">
-        <label for="land_area">Land Area</label>
+        <label for="land_area">Land area (hectares)</label>
         <input type="number" class="form-control" id="land_area" placeholder="Size in hectare(s)" value="{{old('land_area',$registration->land_area)}}" name="land_area" required>
     </div>
     <div class="col-md-6 mb-3">
-        <label for="farm_machinery_implementation">Farm Machinery & Implementation</label>
+        <label for="farm_machinery_implementation">Farm machinery & implementation (qty)</label>
         <input type="number" class="form-control" id="farm_machinery_implementation" name="farm_machinery_implementation" placeholder="Quantity" value="{{old('farm_machinery_implementation',$registration->farm_machinery_implementation)}}" required>
     </div>
     <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>

@@ -31,4 +31,6 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->put('/update-password', 'AccountController@updatePassword')->name('password.update');
     $route->get('/applications', 'RegistrationController@viewApplications')->name('applications.review');
     $route->get('/applications/{registration}', 'RegistrationController@viewApplication')->name('applications.view');
+    $route->put('/applications/{registration}', 'RegistrationController@updateApplicationStatus')->name('applications.update-status');
+    $route->get('certificate', 'RegistrationController@certificate')->name('certificate');
 });

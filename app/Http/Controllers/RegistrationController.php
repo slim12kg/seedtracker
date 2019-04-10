@@ -34,6 +34,8 @@ class RegistrationController extends Controller
             $data['trainings'] = serialize($data['trainings']);
         }
 
+        $data['application_status'] = 'pending';
+
         auth()->user()->updateRegistration($data);
 
         return back()->with('notification','Your registration has been submitted for review, expect to hear from NST soon.');
@@ -68,13 +70,35 @@ class RegistrationController extends Controller
 
     public function viewApplications(Registration $registration)
     {
-        $registrations = $registration->all();
+        $registrations = $registration->whereHas('applicant',function($q){
+            $q->where('registered',true);
+        })->get();
 
         return view('registrations',compact('registrations'));
     }
 
     public function viewApplication(Registration $registration)
     {
+        if(!auth()->user()->is_admin) return abort(403);
+
         return view('view-registration',compact('registration'));
+    }
+
+    public function updateApplicationStatus(Registration $registration,Request $request)
+    {
+        if(!auth()->user()->is_admin) return abort(403);
+
+        $registration->update(['application_status' => $request->get('status')]);
+
+        return back()->with('notification','Application status successfully updated!');
+    }
+
+    public function certificate()
+    {
+        if(auth()->user()->registration->application_status !== 'approved') return abort(403);
+
+        $registration = auth()->user()->registration;
+
+        return view('certificate',compact('registration'));
     }
 }

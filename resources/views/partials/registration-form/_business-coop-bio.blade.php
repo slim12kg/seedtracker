@@ -1,6 +1,6 @@
 @if(auth()->user()->seedCompany())
     <div class="form-row" style="margin-left: 2.5%">
-        <h5><strong>Category of Business</strong></h5>
+        <h5><strong>Category of business</strong></h5>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" {{$registration->category_of_business === 'sole proprietorship' ? 'checked' : ''}} name="category_of_business" id="sole" value="sole proprietorship" required>
             <label class="form-check-label font-normal" for="sole">Sole Proprietorship</label>
@@ -20,7 +20,7 @@
         @if(!$registration->name_of_proprietors)
             <div class="group-content">
                 <div class="col-md-11 mb-3">
-                    <label for="name_of_proprietors">Names of Proprietor / Partner / Manager</label>
+                    <label for="name_of_proprietors">Names of proprietor / partner / manager</label>
                     <input type="text" class="form-control" id="name_of_proprietors" name="name_of_proprietors[]" required>
                 </div>
                 <div class="col-md-1">
@@ -33,7 +33,7 @@
             @foreach($registration->name_of_proprietors as $key => $proprietor)
                 <div class="group-content">
                     <div class="col-md-11 mb-3">
-                        <label for="name_of_proprietors">Names of Proprietor / Partner / Manager</label>
+                        <label for="name_of_proprietors">Names of proprietor / partner / manager</label>
                         <input type="text" class="form-control" id="name_of_proprietors" name="name_of_proprietors[]" value="{{$proprietor}}">
                     </div>
                     <div class="col-md-1">
@@ -56,7 +56,7 @@
     @if(!$registration->name_of_board_of_directors)
     <div class="group-content">
         <div class="col-md-11 mb-3">
-            <label for="name_of_board_of_directors">Names of Board of Director</label>
+            <label for="name_of_board_of_directors">Names of board of director</label>
             <input type="text" class="form-control" id="name_of_board_of_directors" name="name_of_board_of_directors[]" required>
         </div>
         <div class="col-md-1">
@@ -69,7 +69,7 @@
         @foreach($registration->name_of_board_of_directors as $key => $board_of_director)
             <div class="group-content">
                 <div class="col-md-11 mb-3">
-                    <label for="name_of_board_of_directors">Names of Board of Director</label>
+                    <label for="name_of_board_of_directors">Names of board of director</label>
                     <input type="text" class="form-control" id="name_of_board_of_directors" name="name_of_board_of_directors[]" value="{{$board_of_director}}" required>
                 </div>
                 <div class="col-md-1">
@@ -90,7 +90,7 @@
 <div style="margin-bottom: 0.5%">&nbsp;</div>
 <div class="form-row">
     <div class="col-md-12 mb-3">
-        <label for="how_long_in_seed_business">How Long Have You Been in The Seed Business</label>
+        <label for="how_long_in_seed_business">How long have you been in the seed business</label>
         <select class="form-control" name="how_long_in_seed_business" id="how_long_in_seed_business">
             <option {{$registration->how_long_in_seed_business === 'less than 1 year' ? 'checked' : ''}} value="less than 1 year">Less than 1 year</option>
             <option {{$registration->how_long_in_seed_business === 'up to 1 year' ? 'checked' : ''}} value="up to 1 year">up to 1 year</option>

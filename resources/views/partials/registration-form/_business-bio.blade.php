@@ -1,6 +1,6 @@
 <div class="form-row">
     <div class="col-md-12 mb-3">
-        <label for="business_name">Business Name</label>
+        <label for="business_name">Business name</label>
         <input type="text" class="form-control" id="business_name" name="business_name" value="{{old('business_name',$registration->business_name)}}" required>
         @if (!$errors->has('business_name'))
             <div class="text-danger">

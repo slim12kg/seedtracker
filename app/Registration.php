@@ -55,4 +55,9 @@ class Registration extends Model
     {
         return unserialize($value);
     }
+
+    public function applicant()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

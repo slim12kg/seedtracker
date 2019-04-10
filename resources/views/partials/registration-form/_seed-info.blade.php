@@ -3,7 +3,7 @@
         @if(!$registration->list_of_crop_to_be_handled)
             <div class="group-content">
                 <div class="col-md-11 mb-3">
-                    <label for="list_of_crop_to_be_handled">List Crop to Be Handled</label>
+                    <label for="list_of_crop_to_be_handled">List crop to be handled</label>
                     <input type="text" class="form-control" id="list_of_crop_to_be_handled" name="list_of_crop_to_be_handled[]" required>
                 </div>
                 <div class="col-md-1">
@@ -16,7 +16,7 @@
             @foreach($registration->list_of_crop_to_be_handled as $key => $crop)
                 <div class="group-content">
                     <div class="col-md-11 mb-3">
-                        <label for="list_of_crop_to_be_handled">List Crop to Be Handled</label>
+                        <label for="list_of_crop_to_be_handled">List crop to be handled</label>
                         <input type="text" class="form-control" id="list_of_crop_to_be_handled" name="list_of_crop_to_be_handled[]" value="{{$crop}}" required>
                     </div>
                     <div class="col-md-1">
@@ -35,7 +35,7 @@
 @else
     <div class="form-rows">
         <div class="col-md-11 mb-3">
-            <label for="list_of_crop_to_be_handled">Crops to Be Handled</label>
+            <label for="list_of_crop_to_be_handled">Crops to be handled</label>
         </div>
         <div class="col-md-6">
             @php
@@ -75,14 +75,14 @@
 
         <div class="col-md-12 p-0">
             <div class="col-md-12">
-                <label>Other Crops to Be Handled(Please Specify)</label>
+                <label>Other crops to be handled(Please Specify)</label>
             </div>
             <div class="col-md-12">&nbsp;</div>
             <div class="form-row">
                 @if(!$registration->list_of_crop_to_be_handled['others'])
                     <div class="group-content">
                         <div class="col-md-6 mb-3">
-                            <label for="list_of_crop_to_be_handled">Crop Name</label>
+                            <label for="list_of_crop_to_be_handled">Crop name</label>
                             <input type="text" class="form-control" id="list_of_crop_to_be_handled" name="list_of_crop_to_be_handled[others][]" required>
                         </div>
 
@@ -96,7 +96,7 @@
                     @foreach($registration->list_of_crop_to_be_handled['others'] as $key => $crop)
                         <div class="group-content">
                             <div class="col-md-6 mb-3">
-                                <label for="list_of_crop_to_be_handled">Crop Name</label>
+                                <label for="list_of_crop_to_be_handled">Crop name</label>
                                 <input type="text" class="form-control" id="list_of_crop_to_be_handled" name="list_of_crop_to_be_handled[others][]" value="{{$crop}}" required>
                             </div>
 
@@ -120,7 +120,7 @@
 @if(auth()->user()->seedCompany())
     <div class="form-rows">
         <div class="col-md-12">
-            <label class="mb-none">Type of Seeds</label>
+            <label class="mb-none">Type of seeds</label>
         </div>
         <div class="col-md-12">
             <div class="radio">
@@ -138,7 +138,7 @@
     </div>
     <div class="form-row">
         <div class="col-md-12 mb-3">
-            <label for="detail_of_seeds">Details of <span id="seed_type_selected" class="text-capitalize">{{$registration->type_of_seeds}}</span> Seeds</label>
+            <label for="detail_of_seeds">Details of <span id="seed_type_selected" class="">{{$registration->type_of_seeds}}</span> seeds</label>
             <textarea class="form-control" id="detail_of_seeds" name="detail_of_seeds"  required>{{old('detail_of_seeds',$registration->detail_of_seeds)}}</textarea>
         </div>
     </div>
@@ -146,19 +146,19 @@
 
     <div class="form-rows">
         <div class="col-md-12">
-            <label class="mb-none">Source of Parent Material</label>
+            <label class="mb-none">Source of parent material</label>
         </div>
         <div class="col-md-12">
             <div class="radio">
                 <label class="radio">
-                    <input type="radio" name="source_of_parent_material" {{old('source_of_parent_material',$registration->source_of_parent_material) === 'breeder seed' ? 'checked' : ''}} id="breeder_seed" value="breeder seed"> Breeder Seed
+                    <input type="radio" name="source_of_parent_material" {{old('source_of_parent_material',$registration->source_of_parent_material) === 'breeder seed' ? 'checked' : ''}} id="breeder_seed" value="breeder seed"> Breeder seed
                 </label>
                 <label class="radio">
                     <input type="radio" name="source_of_parent_material"
                            {{old('source_of_parent_material',$registration->source_of_parent_material) === 'foundation seed' ? 'checked' : ''}} id="foundation_seed" value="foundation seed"> Foundation Seed
                 </label>
                 <label class="radio">
-                    <input type="radio" name="source_of_parent_material" {{old('source_of_parent_material',$registration->source_of_parent_material) === 'parental lines' ? 'checked' : ''}} id="parental_lines" value="parental lines">Parental Lines
+                    <input type="radio" name="source_of_parent_material" {{old('source_of_parent_material',$registration->source_of_parent_material) === 'parental lines' ? 'checked' : ''}} id="parental_lines" value="parental lines">Parental lines
                 </label>
             </div>
         </div>
