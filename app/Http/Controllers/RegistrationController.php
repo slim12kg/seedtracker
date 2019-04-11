@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Registration;
 use Illuminate\Http\Request;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 class RegistrationController extends Controller
 {
@@ -88,9 +92,40 @@ class RegistrationController extends Controller
     {
         if(!auth()->user()->is_admin) return abort(403);
 
-        $registration->update(['application_status' => $request->get('status')]);
+        $approvedApplications = $registration->where('application_status','approved')->count();
+        $approvedApplications += 1;
+        $certificateID   = substr('000000'. $approvedApplications,-5);
+
+        $registration->update([
+            'application_status' => $request->get('status'),
+            'status_reason' => $request->get('reason'),
+            'last_reviewed_by_admin' => date('Y-m-d'),
+            'certificate_id' => $certificateID,
+            'qr' => $this->generateQR($registration, $certificateID)
+        ]);
 
         return back()->with('notification','Application status successfully updated!');
+    }
+
+    private function generateQR($registration,$certificateID)
+    {
+        $renderer = new ImageRenderer(
+            new RendererStyle(400),
+            new SvgImageBackEnd()
+        );
+
+        $detail = 'It is hereby certify that, ';
+        $detail .= $registration->business_name;
+        $detail .= ' has this '. $registration->updated_at->format('jS') . ' day of '.$registration->updated_at->format('F Y');
+        $detail .= ' licensed as a seed producer and seller with';
+        $detail .= ' registration no 00001';
+
+        $path = storage_path('app/public/qr-codes/'.$certificateID.'.svg');
+
+        $writer = new Writer($renderer);
+        $writer->writeFile($detail,$path);
+
+        return 'storage/qr-codes/'.$certificateID.'.svg';
     }
 
     public function certificate()

@@ -51,6 +51,7 @@ class CreateRegistrationsTable extends Migration
             $table->string('application_status')->default('pending');
             $table->string('status_reason')->nullable();
             $table->string('certificate_id')->nullable();
+            $table->string('qr')->nullable();
             $table->longText('trainings')->nullable();
 
             $table->timestamps();

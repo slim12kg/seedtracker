@@ -56,23 +56,26 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <h5>Update Application status</h5>
-                        <hr>
-                        <button class="btn btn-success btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('approved','Approve Application')" data-target="#reject-modal">
-                            <strong>Approve Application</strong>
-                        </button>
-                        <button class="btn btn-danger btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('rejected','Reject Application')" data-target="#reject-modal">
-                            <strong>Reject Application</strong>
-                        </button>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('queried','Query Application')" data-target="#reject-modal">
-                            <strong>Query Application</strong>
-                        </button>
+
+            @if($registration->application_status !== 'approved')
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <h5>Update Application status</h5>
+                            <hr>
+                            <button class="btn btn-success btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('approved','Approve Application')" data-target="#reject-modal">
+                                <strong>Approve Application</strong>
+                            </button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('rejected','Reject Application')" data-target="#reject-modal">
+                                <strong>Reject Application</strong>
+                            </button>
+                            <button class="btn btn-info btn-sm" data-toggle="modal" onclick="event.preventDefault();setStatus('queried','Query Application')" data-target="#reject-modal">
+                                <strong>Query Application</strong>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <div class="modal fade" tabindex="-1"  id="reject-modal" role="dialog">

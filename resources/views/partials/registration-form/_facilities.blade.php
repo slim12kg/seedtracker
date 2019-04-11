@@ -84,7 +84,11 @@
                     </div>
                     <div class="col-md-1">
                         <label>&nbsp;</label>
-                        <button class="btn btn-primary btn-sm" title="add more" onclick="event.preventDefault();addMore(this)"> &plus; </button>
+                        @if($key == 0)
+                            <button class="btn btn-primary btn-sm" title="add more" onclick="event.preventDefault();addMore(this)"> &plus; </button>
+                        @else
+                            <button class="btn btn-danger btn-sm" title="remove" onclick="event.preventDefault();removeGroup(this)"> &minus; </button>
+                        @endif
                     </div>
                     <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
                 </div>

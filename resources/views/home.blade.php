@@ -26,12 +26,14 @@
                     @if(auth()->user()->registered)
                         <div class="alert alert-danger text-left">
                             Application status: <strong class="text-capitalize">{{$status = auth()->user()->registration->application_status}}</strong>.
-                            @if($status !== 'approved')
-                                <br>
-                                Reason: <span>Not specified</span>
-                            @else
-                                <br>
-                                Click <a target="_blank" href="{{route('certificate')}}">here</a> to print your verified certificate
+                            @if($status !== 'pending')
+                                @if($status !== 'approved')
+                                    <br>
+                                    Reason: <span>{{auth()->user()->registration->status_reason}}</span>
+                                @else
+                                    <br>
+                                    Click <a target="_blank" href="{{route('certificate')}}">here</a> to print your verified certificate
+                                @endif
                             @endif
                         </div>
                     @endif
