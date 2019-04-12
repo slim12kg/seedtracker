@@ -118,7 +118,8 @@ class RegistrationController extends Controller
         $detail .= $registration->business_name;
         $detail .= ' has this '. $registration->updated_at->format('jS') . ' day of '.$registration->updated_at->format('F Y');
         $detail .= ' licensed as a seed producer and seller with';
-        $detail .= ' registration no 00001';
+        $detail .= ' registration no ';
+        $detail .=  $certificateID;
 
         $path = storage_path('app/public/qr-codes/'.$certificateID.'.svg');
 

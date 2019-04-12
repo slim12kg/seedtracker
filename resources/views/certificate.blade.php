@@ -16,7 +16,7 @@
             </a>
             <h3>FEDERAL REPUBLIC OF NIGERIA</h3>
             <h5>LICENSED AS SEED PRODUCER AND SELLER</h5>
-            <h6>REGISTRATION NO: <strong>00001</strong></h6>
+            <h6>REGISTRATION NO: <strong>{{$registration->certificate_id}}</strong></h6>
             <p>
                 It is hereby certify that subject to the provision of the National Agricultural Seeds Council Act No 72 of 1992
             </p>
