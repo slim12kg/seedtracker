@@ -9,7 +9,9 @@ class Registration extends Model
     protected $guarded = ['id','user_id'];
 
     protected $dates = [
-        'last_reviewed_by_admin'
+        'last_reviewed_by_admin',
+        'certification_start_date',
+        'certification_end_date'
     ];
 
 //    protected $casts = [

@@ -27,8 +27,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href=/en/>
-                        <img id="link_presidence" alt="" src="/images/seedtrackerlogo.png" style="width: 33%;padding: 4% 0;">
+                    <a href="{{url('/')}}" style="width:200px;height:67px;display:inline-block;padding: 5px;">
+                        <img id="link_presidence" alt="" src="{{asset('images/nstlogo.png')}}">
                     </a>
                 </div>
 
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <a href='{{url('/')}}'>
-                    <img style="width: 100px;height: 53px;margin: 1%;" id="link_evisa" alt="" src="/images/seedtrackerlogo.png">
+                    <img style="width: 100px;height: 53px;margin: 1%;" id="link_evisa" alt="" src="/images/nstshortlogo.png">
                 </a>
                 <footer class="container-fluid text-center foot">
                     <div class="copyrights">

@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="date_of_training">Date of training</label>
-                            <input type="date" class="form-control" id="date_of_training" value="{{$registration->trainings['date_of_training'][$key]}}"  name="trainings[date_of_training][]" required>
+                            <input type="date" class="form-control" id="date_of_training" value="{{date($registration->trainings['date_of_training'][$key],'Y-m-d')}}"  name="trainings[date_of_training][]" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="evidence">Evidence (pdf / jpeg)</label>

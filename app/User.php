@@ -73,4 +73,21 @@ class User extends Authenticatable
 
         return $this->registration;
     }
+
+    public function activationToken()
+    {
+       return $this->hasOne(AccountActivation::class,'user_id');
+    }
+
+    public function generateActivationToken()
+    {
+        return $this->activationToken()->create([
+           'token' => str_random(60),
+        ]);
+    }
+
+    public function getActivationStringAttribute()
+    {
+        return $this->activationToken->token;
+    }
 }

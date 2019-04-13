@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NSTApplicationUpdate;
 use App\Registration;
 use Illuminate\Http\Request;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Illuminate\Support\Facades\Mail;
 
 class RegistrationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['activated'])->only('index');
+    }
+
     public function company()
     {
         $registration = auth()->user()->registration;
@@ -92,17 +99,22 @@ class RegistrationController extends Controller
     {
         if(!auth()->user()->is_admin) return abort(403);
 
+        $applicant = $registration->applicant;
         $approvedApplications = $registration->where('application_status','approved')->count();
         $approvedApplications += 1;
         $certificateID   = substr('000000'. $approvedApplications,-5);
 
         $registration->update([
             'application_status' => $request->get('status'),
-            'status_reason' => $request->get('reason'),
+            'status_reason' => $request->get('status_reason'),
             'last_reviewed_by_admin' => date('Y-m-d'),
             'certificate_id' => $certificateID,
-            'qr' => $this->generateQR($registration, $certificateID)
+            'qr' => $this->generateQR($registration, $certificateID),
+            'certification_start_date' => $request->get('certification_start_date'),
+            'certification_end_date' => $request->get('certification_end_date'),
         ]);
+
+        Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
 
         return back()->with('notification','Application status successfully updated!');
     }
@@ -113,13 +125,17 @@ class RegistrationController extends Controller
             new RendererStyle(400),
             new SvgImageBackEnd()
         );
+        $verifyUrl = route('application.verify',$certificateID);
+        $from = $registration->certification_start_date->format('Y/m/d');
+        $to = $registration->certification_end_date->format('Y/m/d');
 
-        $detail = 'It is hereby certify that, ';
-        $detail .= $registration->business_name;
-        $detail .= ' has this '. $registration->updated_at->format('jS') . ' day of '.$registration->updated_at->format('F Y');
-        $detail .= ' licensed as a seed producer and seller with';
-        $detail .= ' registration no ';
-        $detail .=  $certificateID;
+        $detail = "NASC Seed Tracker \n\n";
+//        $detail .= "Company: \n";
+        $detail .= "{$registration->business_name} \n";
+//        $detail .= "Validity: \n";
+        $detail .= "{$from} - {$to} \n";
+//        $detail .= "To verify authenticity visit: \n";
+        $detail .= "{$verifyUrl} \n";
 
         $path = storage_path('app/public/qr-codes/'.$certificateID.'.svg');
 

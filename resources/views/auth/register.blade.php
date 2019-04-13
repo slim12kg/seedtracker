@@ -61,7 +61,7 @@
 
                         <fieldset class="form-group">
                             <div class="row">
-                                <label for="email" class="col-md-4 control-label">Registration Type</label>
+                                <label for="email" class="col-md-4 control-label">Registration type</label>
                                 <div class="col-md-6 mt-1">
                                     <div class="form-check">
                                         <input class="form-check-input" required type="radio" name="user_type" id="seed_company" value="seed company">
@@ -73,6 +73,26 @@
                                         <input class="form-check-input" required type="radio" name="user_type" id="community_seed_producer" value="community seed producer">
                                         <label class="form-check-label font-normal" for="community_seed_producer">
                                             Community Seed Producer
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <label for="registered_before" class="col-md-4 control-label">Have you registered before?</label>
+                                <div class="col-md-6 mt-1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" required type="radio"  id="yes" value="yes">
+                                        <label class="form-check-label font-normal" for="yes">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" required type="radio" id="no" value="no seed producer">
+                                        <label class="form-check-label font-normal" for="no">
+                                            No
                                         </label>
                                     </div>
                                 </div>
@@ -92,7 +112,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm password</label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
                                        name="password_confirmation" required>

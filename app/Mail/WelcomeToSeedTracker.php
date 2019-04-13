@@ -13,6 +13,8 @@ class WelcomeToSeedTracker extends Mailable
 
     public $user;
 
+    public $token;
+
     /**
      * Create a new message instance.
      *
@@ -30,6 +32,11 @@ class WelcomeToSeedTracker extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome');
+        $url = route('account.activate',$this->user->activation_string);
+
+        return $this->markdown('emails.welcome')->with([
+            'firstname' => $this->user->firstname,
+            'activation' => $url
+        ]);
     }
 }

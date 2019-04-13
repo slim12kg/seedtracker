@@ -1,28 +1,18 @@
 @component('mail::message')
 
-## Welcome to {{ config('app.name')  }}
+## Dear {{$firstname}},
 
-The Cassava Seed Tracker™ is a fully featured program for real-time tracking of cassava seed production, including pre-planting planning, registration of seed fields, crop management, harvesting, quality assessment and quality assertion. The Cassava Seed Tracker is also a digital platform for communication and networking of cassava seed producers and service providers for common good.
-<hr>
-<br>
-We provide the following solutions:
-<br>
-1. Crop Management Tools
+<p>
+    Welcome to NASC Seed Tracker.
+</p>
+<p>
+    Thanks for registering on the NASC Seed Tracker.
+</p>
 
-2. Cassava Community
-
-3. Cassava Variety Info
-
-4. Cassava Trading Info
-
-5. Decision Support
-
-<br>
-@component('mail::button', ['url' => 'seedtracker.corpreneur.com.ng'])
-    Activate Your Account
+@component('mail::button', ['url' => $activation])
+    Click here to activate your account
 @endcomponent
 
-Regards,<br>
-{{ config('app.name') }} Team
-
+Regards,
+Admin
 @endcomponent

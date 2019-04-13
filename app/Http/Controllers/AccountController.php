@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\AccountActivation;
+use App\Http\Middleware\ActivateAccount;
 use App\Http\Requests\updateAccount;
 use App\Http\Requests\updatePassword;
 use App\User;
@@ -43,5 +45,17 @@ class AccountController extends Controller
         auth()->user()->update(['password' => bcrypt($updatePassword->get('password'))]);
 
         return back()->with('notification','Your password was successfully updated');
+    }
+
+    public function activate($token,AccountActivation $accountActivation)
+    {
+        $account = $accountActivation->where('token',$token)->first();
+
+        if(!$account) abort(404);
+
+        $account->update(['verified' => 1]);
+
+        return redirect()->route('login')
+            ->with('error','Account successfully activated, provide your login details to continue');
     }
 }

@@ -53,6 +53,8 @@ class CreateRegistrationsTable extends Migration
             $table->string('certificate_id')->nullable();
             $table->string('qr')->nullable();
             $table->longText('trainings')->nullable();
+            $table->date('certification_start_date')->nullable();
+            $table->date('certification_end_date')->nullable();
 
             $table->timestamps();
         });

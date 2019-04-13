@@ -85,18 +85,31 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="update_type"></h4>
                     </div>
-                    <form action="{{route('applications.view',$registration)}}" method="POST">
+                    <form action="{{route('applications.view',$registration)}}" method="POST" class="form-horizontal">
                         <div class="modal-body">
                             {{csrf_field()}}
                             {{method_field('PUT')}}
                             <input type="hidden" name="status" id="application_status" value="pending">
-                            <div class="form-group">
-                                <label for="exampleInputAmount">Reason</label>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea name="reason" class="form-control" id="exampleInputAmount" cols="30" rows="5"></textarea>
+                                    <label for="status_reason">Reason</label>
+                                    <textarea name="status_reason" class="form-control" id="status_reason" cols="30" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group hide" id="application_dates_from">
+                                <div class="col-md-6">
+                                    <label for="certification_start_date">Certification dates from</label>
+                                    <input type="date" name="certification_start_date"
+                                           id="certification_start_date" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="certification_end_date">Certification dates to</label>
+                                    <input type="date" name="certification_end_date"
+                                           id="certification_end_date" class="form-control">
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">&larr; Back</button>
                             <button type="submit" class="btn btn-primary">
@@ -118,6 +131,16 @@
         {
             document.getElementById('application_status').value = status;
             document.getElementById('update_type').innerHTML = title;
+
+            var group = $('#application_dates_from');
+
+            if(status === 'approved'){
+                group.removeClass('hide');
+                group.find('input').attr('required',true);
+            }else{
+                group.addClass('hide');
+                group.find('input').removeAttr('required');
+            }
         }
     </script>
 @endsection

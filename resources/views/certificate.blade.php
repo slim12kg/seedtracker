@@ -12,41 +12,42 @@
     <div class="row">
         <div class="col-md-12 text-center">
             <a href="#">
-                <img id="link_presidence" alt="" src="/images/nstlogo.jpg" style="width: 28%;padding-top:2%">
+                <img id="link_presidence" alt="" src="/images/nst_only_logo.png" style="width: 20%;padding-top:2%">
             </a>
-            <h3>FEDERAL REPUBLIC OF NIGERIA</h3>
-            <h5>LICENSED AS SEED PRODUCER AND SELLER</h5>
-            <h6>REGISTRATION NO: <strong>{{$registration->certificate_id}}</strong></h6>
+            <h2>FEDERAL REPUBLIC OF NIGERIA</h2>
+            <h3>LICENSED AS SEED PRODUCER AND SELLER</h3>
+            <h5><strong>REGISTRATION NO:  {{$registration->certificate_id}}</strong></h5>
             <p>
                 It is hereby certify that subject to the provision of the National Agricultural Seeds Council Act No 72 of 1992
             </p>
             <h2 class="dotted-below" style="width: 60%; margin:auto">{{$registration->business_name}}</h2>
             <p style="margin-top: 1%;">
-                has this <span class="dotted-below">{{$registration->updated_at->format('jS')}}</span> day of
-                <span class="dotted-below">{{$registration->updated_at->format('F Y')}}</span>
+                has this <strong class="dotted-below">{{$registration->updated_at->format('jS')}}</strong> day of
+                <strong class="dotted-below">{{$registration->updated_at->format('F Y')}}</strong>
                 been licensed as a
             </p>
             <h3>Seed producer and Seller</h3>
             <p>for the period of ONE YEAR</p>
             <p>
                 from
-                <span class="dotted-below">{{$registration->updated_at->format('jS F, Y')}}</span>
+                <strong class="dotted-below">{{$registration->certification_start_date->format('jS F, Y')}}</strong>
                 to
-                <span class="dotted-below">{{$registration->updated_at->format('jS F, Y')}}</span>
+                <strong class="dotted-below">{{$registration->certification_end_date->format('jS F, Y')}}</strong>
             </p>
 
             <table class="table">
                 <tr>
                     <td>
-                        <img width="200" src="{{asset($registration->qr)}}" alt="">
                     </td>
-                    <td style="padding-top: 85px">
+                    <td>
+                        <img width="200" src="{{asset($registration->qr)}}" alt="">
                         <p>
-                            <img width="200" src="{{asset('images/signature.jpeg')}}" alt="">
+                            <small>System generated certificate from the NASC Seed Tracker</small>
+                            <img src="{{asset('images/seedtrackerlogo.png')}}" alt="seedtrackerlogo" style="width: 2%">
                         </p>
-                        <p style="position: relative;bottom: 37px;">
-                            <span class="dotted-below">Director General</span>
-                        </p>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </table>
@@ -75,9 +76,16 @@
         td{
             border:none !important;
         }
+
+        p{
+            font-size: 16px;
+        }
     </style>
 
     <style type="text/css" media="print">
         @page { size: landscape; }
+        button{
+            display: none;
+        }
     </style>
 @endsection

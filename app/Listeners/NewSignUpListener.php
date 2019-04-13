@@ -6,6 +6,7 @@ use App\Mail\WelcomeToSeedTracker;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class NewSignUpListener
@@ -28,6 +29,8 @@ class NewSignUpListener
      */
     public function handle(Registered $event)
     {
-        Mail::to($event->user->email)->send(new WelcomeToSeedTracker($event->user));
+        $event->user->generateActivationToken();
+
+        Mail::to($event->user)->send(new WelcomeToSeedTracker($event->user));
     }
 }
