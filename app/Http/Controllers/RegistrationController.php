@@ -103,16 +103,22 @@ class RegistrationController extends Controller
         $approvedApplications = $registration->where('application_status','approved')->count();
         $approvedApplications += 1;
         $certificateID   = substr('000000'. $approvedApplications,-5);
+        $status = $request->get('status');
 
         $registration->update([
-            'application_status' => $request->get('status'),
+            'application_status' => $status,
             'status_reason' => $request->get('status_reason'),
             'last_reviewed_by_admin' => date('Y-m-d'),
-            'certificate_id' => $certificateID,
-            'qr' => $this->generateQR($registration, $certificateID),
             'certification_start_date' => $request->get('certification_start_date'),
             'certification_end_date' => $request->get('certification_end_date'),
         ]);
+
+        if($status === "approved") {
+           $registration->update([
+               'certificate_id' => $certificateID,
+               'qr' => $this->generateQR($registration, $certificateID),
+           ]);
+        }
 
         Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
 
@@ -126,16 +132,15 @@ class RegistrationController extends Controller
             new SvgImageBackEnd()
         );
         $verifyUrl = route('application.verify',$certificateID);
-        $from = $registration->certification_start_date ? $registration->certification_start_date->format('Y/m/d') : null;
-        $to = $registration->certification_end_date ? $registration->certification_end_date->format('Y/m/d') : '';
+        $from = $registration->certification_start_date->format('Y/m/d');
+        $to = $registration->certification_end_date->format('Y/m/d');
 
-        $detail = "NASC Seed Tracker \n\n";
-//        $detail .= "Company: \n";
-        $detail .= "{$registration->business_name} \n";
-//        $detail .= "Validity: \n";
-        $detail .= "{$from} - {$to} \n";
-//        $detail .= "To verify authenticity visit: \n";
-        $detail .= "{$verifyUrl} \n";
+        $detail = "NASC Licensed Seed Producer \n\n";
+        $detail .= "Company: {$registration->business_name} \n\n";
+        $detail .= "Reg No:{$certificateID} \n\n";
+        $detail .= "Validity: {$from} - {$to} \n\n";
+        $detail .= "verify using: \n";
+        $detail .= "{$verifyUrl}";
 
         $path = storage_path('app/public/qr-codes/'.$certificateID.'.svg');
 

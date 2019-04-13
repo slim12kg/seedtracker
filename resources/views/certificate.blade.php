@@ -10,9 +10,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center cert-bg">
             <a href="#">
-                <img id="link_presidence" alt="" src="/images/nst_only_logo.png" style="width: 20%;padding-top:2%">
+                <img id="link_presidence" alt="" src="/images/nasc/logo.png" style="width: 9%;padding-top:2%">
             </a>
             <h2>FEDERAL REPUBLIC OF NIGERIA</h2>
             <h3>LICENSED AS SEED PRODUCER AND SELLER</h3>
@@ -40,7 +40,7 @@
                     <td>
                     </td>
                     <td>
-                        <img width="200" src="{{asset($registration->qr)}}" alt="">
+                        <img width="150" src="{{asset($registration->qr)}}" alt="">
                         <p>
                             <small>System generated certificate from the NASC Seed Tracker</small>
                             <img src="{{asset('images/seedtrackerlogo.png')}}" alt="seedtrackerlogo" style="width: 2%">
@@ -79,6 +79,10 @@
 
         p{
             font-size: 16px;
+        }
+
+        .cert-bg{
+            background: url("{{asset('images/nasc/water.png')}}") no-repeat center;
         }
     </style>
 
