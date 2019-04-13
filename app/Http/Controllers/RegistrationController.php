@@ -126,8 +126,8 @@ class RegistrationController extends Controller
             new SvgImageBackEnd()
         );
         $verifyUrl = route('application.verify',$certificateID);
-        $from = $registration->certification_start_date->format('Y/m/d');
-        $to = $registration->certification_end_date->format('Y/m/d');
+        $from = $registration->certification_start_date ? $registration->certification_start_date->format('Y/m/d') : null;
+        $to = $registration->certification_end_date ? $registration->certification_end_date->format('Y/m/d') : '';
 
         $detail = "NASC Seed Tracker \n\n";
 //        $detail .= "Company: \n";
