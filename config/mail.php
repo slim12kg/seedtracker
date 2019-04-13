@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'SeedTracker'),
+        'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
     /*
@@ -84,11 +84,9 @@ return [
     |
     */
 
-    //'username' => env('MAIL_USERNAME'),
-    'username' => 'busayoogunya@gmail.com',
+    'username' => env('MAIL_USERNAME'),
 
-    //'password' => env('MAIL_PASSWORD'),
-    'password' => 'Derinsola2',
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
