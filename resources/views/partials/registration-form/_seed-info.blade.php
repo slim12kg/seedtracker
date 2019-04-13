@@ -75,7 +75,7 @@
 
         <div class="col-md-12 p-0">
             <div class="col-md-12">
-                <label>Other crops to be handled(Please Specify)</label>
+                <label>Other crops to be handled(please specify)</label>
             </div>
             <div class="col-md-12">&nbsp;</div>
             <div class="form-row">

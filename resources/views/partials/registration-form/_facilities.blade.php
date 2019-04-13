@@ -51,7 +51,7 @@
 @endif
 <div class="col-md-12 p-0">
     <div class="col-md-12">
-        <label>Other Facilities Available (Please Specify)</label>
+        <label>Other facilities available (please specify)</label>
     </div>
     <div class="form-row">
         @if(!$registration->other_facilities_available)
