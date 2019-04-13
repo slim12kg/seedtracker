@@ -13,6 +13,6 @@
     Click here to activate your account
 @endcomponent
 
-Regards,
+Regards,<br>
 Admin
 @endcomponent

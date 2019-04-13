@@ -9,6 +9,6 @@
     Reason: {{$reason}}
 </p>
 
-Regards,
+Regards,<br>
 Admin
 @endcomponent
