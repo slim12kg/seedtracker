@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="{{url('/')}}" style="width:200px;height:67px;display:inline-block;padding: 5px;">
-                        <img id="link_presidence" alt="" src="{{asset('images/nstlogo.png')}}">
+                        <img id="link_presidence" alt="" src="{{asset('images/nstlogowhite.png')}}">
                     </a>
                 </div>
 
@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="{{$route === 'about' ? 'active' : ''}}">
-                            <a href="{{route('about')}}">About</a>
+                            <a href="#" data-toggle="modal" data-target="#aboutModal">About</a>
                         </li>
                         <li class="{{$route === 'faq' ? 'active' : ''}}">
                             <a href="{{route('faq')}}">Frequently Asked Questions</a>
@@ -84,6 +84,26 @@
         <div class="footer">
             <div class="container-fluid">
                 <!-- Modal -->
+                <div class="modal fade" id="aboutModal" role="dialog">
+                    <!-- Modal Content-->
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">About Us</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    NASC Seed Tracker is official on-line platform of the National Agricultural Seeds Council (NASC) of Nigeria, for registration of seed companies and seed fields with NASC. Eligible users can start using this platform after creating personal/company account.
+                                </p>
+                                <p>
+                                    For registration use this URL: click
+                                    <a target="_blank" href="{{route('register')}}">here</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal fade" id="mlModal" role="dialog">
                     <!-- Modal Content-->
                     <div class="modal-dialog modal-md">
@@ -105,7 +125,7 @@
                     <div class="copyrights">
                         <a class="link" href="{{url('/')}}">
                             Home                </a>
-                        <a class="link" href="{{route('about')}}">
+                        <a class="link" href="#" data-toggle="modal" data-target="#aboutModal">
                             About
                         </a>
                         <a class="link" href="{{route('faq')}}">
@@ -114,9 +134,9 @@
                         <a class="link" href="{{route('contact')}}">
                             Contact us
                         </a>
-                        <a class="mentions right" href="#" data-toggle="modal" data-target="#mlModal" id="" >
-                            Legal Notice
-                        </a>
+                        {{--<a class="mentions right" href="#" data-toggle="modal" data-target="#mlModal" id="" >--}}
+                            {{--Disclaimer--}}
+                        {{--</a>--}}
                     </div>
                 </footer>
             </div>

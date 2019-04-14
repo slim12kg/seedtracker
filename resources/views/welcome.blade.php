@@ -13,19 +13,19 @@
                 <ol class="carousel-indicators hidden">
                     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                     <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    {{--<li data-target="#myCarousel" data-slide-to="2"></li>--}}
                 </ol>
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active">
-                        <img src="seed-a.jpeg" alt="" />
+                        <img src="{{asset('images/seed-a.jpeg')}}" alt="" />
                     </div>
                     <div class="item">
-                        <img src="seed-a.jpeg" alt="" />
+                        <img src="{{asset('images/seed-lab.jpg')}}" alt="" />
                     </div>
-                    <div class="item">
-                        <img src="seed-a.jpeg" alt="" />
-                    </div>
+                    {{--<div class="item">--}}
+                        {{--<img src="{{asset('images/seed-a.jpeg')}}" alt="" />--}}
+                    {{--</div>--}}
                 </div>
 
                 <!-- Left and right controls -->
