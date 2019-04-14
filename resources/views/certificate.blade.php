@@ -45,7 +45,9 @@
                         </p>
                     </td>
                     <td style="vertical-align: bottom">
-                        <strong class="s-management">Signed Management</strong>
+                        <strong class="s-management">Signed</strong>
+                        <strong class="" style="width: 100%;display: inline-block; position: relative;
+            bottom: 15px;"> Director General</strong>
                     </td>
                 </tr>
             </table>
@@ -85,8 +87,11 @@
 
         .s-management{
             position: relative;
-            bottom: 10px;
+            bottom: 20px;
             border-bottom: 1px solid #000;
+            display: inline-block;
+            width: 40%;
+            margin: auto;
         }
     </style>
 
