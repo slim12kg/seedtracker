@@ -36,18 +36,16 @@
             </p>
 
             <table class="table">
-                <tr>
-                    <td>
-                    </td>
+                <tr style="height: 150px">
                     <td>
                         <img width="150" src="{{asset($registration->qr)}}" alt="">
                         <p>
                             <small>System generated certificate from the NASC Seed Tracker</small>
-                            <img src="{{asset('images/seedtrackerlogo.png')}}" alt="seedtrackerlogo" style="width: 2%">
+{{--                            <img src="{{asset('images/seedtrackerlogo.png')}}" alt="seedtrackerlogo" style="width: 2%">--}}
                         </p>
                     </td>
-                    <td>
-
+                    <td style="vertical-align: bottom">
+                        <strong class="s-management">Signed Management</strong>
                     </td>
                 </tr>
             </table>
@@ -83,6 +81,12 @@
 
         .cert-bg{
             background: url("{{asset('images/nasc/water.png')}}") no-repeat center;
+        }
+
+        .s-management{
+            position: relative;
+            bottom: 10px;
+            border-bottom: 1px solid #000;
         }
     </style>
 
