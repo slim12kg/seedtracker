@@ -17,9 +17,9 @@
             <h2 id="fed">FEDERAL REPUBLIC OF NIGERIA</h2>
             <h2 id="seed_pro">NATIONAL AGRICULTURAL SEEDS COUNCIL</h2>
             <h3 id="lin">LICENSED AS SEED PRODUCER AND SELLER</h3>
-            <h4><strong>REGISTRATION NO:  <span id="id-no">{{$registration->certificate_id}}</span></strong></h4>
+            <h4><strong>REGISTRATION NO.:  <span id="id-no">{{$registration->certificate_id}}</span></strong></h4>
             <p>
-                It is hereby certify that subject to the provision of the National Agricultural Seeds Council Act No 72 of 1992
+                It is hereby certify that subject to the provision of the National Agricultural Seeds Council Act No. 72 of 1992.
             </p>
             <h2 class="dotted-below" id="comp">{{$registration->business_name}}</h2>
             <p style="margin-top: 1%;">
@@ -27,14 +27,13 @@
                 <strong class="">{{$registration->updated_at->format('F Y')}}</strong>
                 been licensed as a
             </p>
-            <h3>Seed producer and Seller</h3>
+            <h3>Seed Producer and Seller</h3>
             <p>
                 from
             <p>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h3 class="" id="from">{{$registration->certification_start_date->format('jS F, Y')}}</h3>
-                    <span class="mx-2 d-inline-block">&nbsp;to&nbsp;</span>
+                    <h3 class="" id="from">{{$registration->certification_start_date->format('jS F, Y')}} to</h3>
                     <h3 class="" id="to">{{$registration->certification_end_date->format('jS F, Y')}}</h3>
                 </div>
             </div>
