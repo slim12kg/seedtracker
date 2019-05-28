@@ -10,6 +10,7 @@ use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class RegistrationController extends Controller
 {
@@ -155,6 +156,14 @@ class RegistrationController extends Controller
         if(auth()->user()->registration->application_status !== 'approved') return abort(403);
 
         $registration = auth()->user()->registration;
+        $orgName = $registration->business_name;
+
+        $data = ['registration' => $registration];
+
+        return PDF::loadView('certificate', $data)
+            ->setPaper('a4', 'landscape')
+            ->setWarnings(false)
+            ->download("$orgName.pdf");
 
         return view('certificate',compact('registration'));
     }

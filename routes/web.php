@@ -38,24 +38,13 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');
 Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
 
-//use BaconQrCode\Renderer\ImageRenderer;
-//use BaconQrCode\Renderer\Image\SvgImageBackEnd;
-//use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-//use BaconQrCode\Writer;
+Route::get('demo',function(){
 
-//Route::get('demo',function(){
-//
-//    $renderer = new ImageRenderer(
-//        new RendererStyle(400),
-//        new SvgImageBackEnd()
-//    );
-//
-//    $detail = "1. \t NASC \n";
-//    $detail .= "2. \t Company Name \n";
-//    $detail .= "3. \t Validity Period \n";
-//    $detail .= "4. \t Verify URL \n";
-//    $path = storage_path('app/public/qr-codes/demo.svg');
-//
-//    $writer = new Writer($renderer);
-//    $writer->writeFile($detail,$path);
-//});
+    $registration = auth()->user()->registration;
+    $data = ['registration' => $registration];
+
+    return \PDF::loadView('certificate', $data)
+       ->setPaper('a4', 'landscape')
+       ->setWarnings(false)
+       ->download('certificate.pdf');
+});
