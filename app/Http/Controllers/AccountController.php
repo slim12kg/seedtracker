@@ -32,7 +32,7 @@ class AccountController extends Controller
             $profileImg = $updateAccount->file('profile_image')
                 ->storeAs('',$imageName,['disk' => 'profile']);
 
-            $data['profile_image'] = 'storage/profile/'.$profileImg;
+            $data['profile_image'] = 'public/profile/'.$profileImg;
         }
 
         auth()->user()->update($data);
