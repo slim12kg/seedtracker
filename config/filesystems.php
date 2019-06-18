@@ -58,21 +58,21 @@ return [
         'profile' => [
             'driver' => 'local',
             'root' => storage_path('app/public/profile'),
-            'url' => env('APP_URL').'/filesystem/profile',
+            'url' => env('APP_URL').'/public/profile',
             'visibility' => 'public',
         ],
 
         'incorporation' => [
             'driver' => 'local',
             'root' => storage_path('app/public/evidence-of-incorporation'),
-            'url' => env('APP_URL').'/filesystem/evidence-of-incorporation',
+            'url' => env('APP_URL').'/public/evidence-of-incorporation',
             'visibility' => 'public',
         ],
 
         'training' => [
             'driver' => 'local',
             'root' => storage_path('app/public/evidence-of-training'),
-            'url' => env('APP_URL').'/filesystem/evidence-of-training',
+            'url' => env('APP_URL').'/public/evidence-of-training',
             'visibility' => 'public',
         ],
 
