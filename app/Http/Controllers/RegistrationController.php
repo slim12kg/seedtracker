@@ -61,7 +61,7 @@ class RegistrationController extends Controller
         $filePath = $request->file('evidence_of_inc')
             ->storeAs('',$fileName,['disk' => 'incorporation']);
 
-        return 'storage/evidence-of-incorporation/'.$filePath;
+        return 'public/evidence-of-incorporation/'.$filePath;
     }
 
     private function uploadEvidenceOfTraining(Request $request)
@@ -74,7 +74,7 @@ class RegistrationController extends Controller
 
             $filePath = $evidence->storeAs('',$fileName,['disk' => 'training']);
 
-            $files[] = 'storage/evidence-of-training/'.$filePath;
+            $files[] = 'public/evidence-of-training/'.$filePath;
         }
 
         return $files;
@@ -148,7 +148,7 @@ class RegistrationController extends Controller
         $writer = new Writer($renderer);
         $writer->writeFile($detail,$path);
 
-        return 'storage/qr-codes/'.$certificateID.'.svg';
+        return 'public/qr-codes/'.$certificateID.'.svg';
     }
 
     public function certificate()
