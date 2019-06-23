@@ -58,9 +58,10 @@
                         @endif
                         @if($registration->application_status === 'approved')
                             <div id="menu7" class="tab-pane fade">
+                                <br>
                                 <p>
                                     Click <a target="_blank" href="{{route('certificate.view',$registration)}}">here</a>
-                                    to download applicant certificate
+                                    to view applicant certificate
                                 </p>
                             </div>
                         @endif
