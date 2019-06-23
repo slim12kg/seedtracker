@@ -34,7 +34,12 @@
 <div class="form-row">
     <div class="col-md-6 mb-3">
         <label for="state">State</label>
-        <input type="text" class="form-control" id="state" name="state" value="{{old('state',$registration->state)}}" required>
+        <select name="state" class="form-control" id="state" required>
+            <option value="">--Select--</option>
+            @foreach($states as $state)
+                <option {{old('state',$registration->state) === $state ? 'selected' : ''}} value="{{$state}}">{{$state}}</option>
+            @endforeach
+        </select>
         @if (!$errors->has('state'))
             <div class="text-danger">
                 {{$errors->first('state')}}

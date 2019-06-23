@@ -84,13 +84,15 @@
                                 <label for="registered_before" class="col-md-4 control-label">Have you registered before?</label>
                                 <div class="col-md-6 mt-1">
                                     <div class="form-check">
-                                        <input class="form-check-input" required type="radio"  id="yes" value="yes">
+                                        <input class="form-check-input" required type="radio"  id="yes"
+                                               name="registered_before" value="yes">
                                         <label class="form-check-label font-normal" for="yes">
                                             Yes
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" required type="radio" id="no" value="no seed producer">
+                                        <input class="form-check-input" required type="radio" id="no"
+                                               name="registered_before" checked value="no">
                                         <label class="form-check-label font-normal" for="no">
                                             No
                                         </label>

@@ -33,6 +33,7 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->get('/applications/{registration}', 'RegistrationController@viewApplication')->name('applications.view');
     $route->put('/applications/{registration}', 'RegistrationController@updateApplicationStatus')->name('applications.update-status');
     $route->get('certificate', 'RegistrationController@certificate')->name('certificate');
+    $route->get('certificate/{registration}', 'RegistrationController@viewApplicantCertificate')->name('certificate.view');
 });
 
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');
@@ -40,11 +41,6 @@ Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('appl
 
 Route::get('demo',function(){
 
-    $registration = auth()->user()->registration;
-    $data = ['registration' => $registration];
-
-    return \PDF::loadView('certificate', $data)
-       ->setPaper('a4', 'landscape')
-       ->setWarnings(false)
-       ->download('certificate.pdf');
+    dd(date('d-m-Y',strtotime('2019-06-02')));
+//    {{date('Y-m-d','')}}
 });

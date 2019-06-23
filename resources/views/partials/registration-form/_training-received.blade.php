@@ -48,6 +48,7 @@
                 <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
             </div>
         @else
+
             @foreach($registration->trainings['crop_trained'] as $key => $crop)
                 <div class="group-content {{old('trainings_received',$registration->trainings_received) === 'yes' ? '' : 'hide'}}" id="training_group">
                     <div class="col-md-11 p-0">
@@ -73,12 +74,14 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="date_of_training">Date of training</label>
-                            <input type="date" class="form-control" id="date_of_training" value="{{date($registration->trainings['date_of_training'][$key],'Y-m-d')}}"  name="trainings[date_of_training][]" required>
+                            <input type="date" class="form-control" id="date_of_training" value="{{date('Y-m-d',strtotime($registration->trainings['date_of_training'][$key]))}}"  name="trainings[date_of_training][]" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="evidence">Evidence (pdf / jpeg)</label>
                             <input type="file" class="form-control p-3px" accept=".jpeg,.pdf,application/pdf,image/jpeg" id="evidence" name="trainings[evidence][]" required>
-                            <span class="text-danger">view uploaded file <a target="_blank" href="{{url($registration->trainings['evidence'][$key])}}">here</a>. You can re-upload file</span>
+                            @if($registration->trainigs['evidence'][$key])
+                                <span class="text-danger">view uploaded file <a target="_blank" href="{{url($registration->trainings['evidence'][$key])}}">here</a>. You can re-upload file</span>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>

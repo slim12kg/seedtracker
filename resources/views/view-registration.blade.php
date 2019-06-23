@@ -28,6 +28,9 @@
                         @if(!$registration->applicant->seedCompany())
                             <li><a data-toggle="tab" href="#menu6">Training</a></li>
                         @endif
+                        @if($registration->application_status === 'approved')
+                            <li><a data-toggle="tab" href="#menu7">Certificate</a></li>
+                        @endif
                     </ul>
 
                     <div class="tab-content">
@@ -51,6 +54,14 @@
                         @if(!$registration->applicant->seedCompany())
                             <div id="menu6" class="tab-pane fade">
                                 @include('partials.view-registration._training')
+                            </div>
+                        @endif
+                        @if($registration->application_status === 'approved')
+                            <div id="menu7" class="tab-pane fade">
+                                <p>
+                                    Click <a target="_blank" href="{{route('certificate.view',$registration)}}">here</a>
+                                    to download applicant certificate
+                                </p>
                             </div>
                         @endif
                     </div>

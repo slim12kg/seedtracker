@@ -42,7 +42,10 @@ class RegistrationController extends Controller
         if($request->hasFile('evidence_of_inc')) $data['evidence_of_inc'] = $this->uploadEvidenceOfIncorporation($request);
 
         if(auth()->user()->communitySeedProducer()) {
-            $data['trainings']['evidence'] = $this->uploadEvidenceOfTraining($request);
+            if(isset($request->file('trainings')['evidence'])) {
+                $data['trainings']['evidence'] = $this->uploadEvidenceOfTraining($request);
+            }
+
             $data['trainings'] = serialize($data['trainings']);
         }
 
@@ -61,7 +64,7 @@ class RegistrationController extends Controller
         $filePath = $request->file('evidence_of_inc')
             ->storeAs('',$fileName,['disk' => 'incorporation']);
 
-        return 'public/evidence-of-incorporation/'.$filePath;
+        return 'storage/evidence-of-incorporation/'.$filePath;
     }
 
     private function uploadEvidenceOfTraining(Request $request)
@@ -74,7 +77,7 @@ class RegistrationController extends Controller
 
             $filePath = $evidence->storeAs('',$fileName,['disk' => 'training']);
 
-            $files[] = 'public/evidence-of-training/'.$filePath;
+            $files[] = 'storage/evidence-of-training/'.$filePath;
         }
 
         return $files;
@@ -115,10 +118,10 @@ class RegistrationController extends Controller
         ]);
 
         if($status === "approved") {
-           $registration->update([
-               'certificate_id' => $certificateID,
-               'qr' => $this->generateQR($registration, $certificateID),
-           ]);
+            $registration->update([
+                'certificate_id' => $certificateID,
+                'qr' => $this->generateQR($registration, $certificateID),
+            ]);
         }
 
         Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
@@ -148,7 +151,7 @@ class RegistrationController extends Controller
         $writer = new Writer($renderer);
         $writer->writeFile($detail,$path);
 
-        return 'public/qr-codes/'.$certificateID.'.svg';
+        return 'storage/qr-codes/'.$certificateID.'.svg';
     }
 
     public function certificate()
@@ -164,7 +167,18 @@ class RegistrationController extends Controller
             ->setPaper('a4', 'landscape')
             ->setWarnings(false)
             ->download("$orgName.pdf");
+    }
 
-        return view('certificate',compact('registration'));
+    public function viewApplicantCertificate(Registration $registration)
+    {
+        if(!auth()->user()->is_admin) return abort(403);
+
+        $data = ['registration' => $registration];
+        $orgName = $registration->business_name;
+
+        return PDF::loadView('certificate', $data)
+            ->setPaper('a4', 'landscape')
+            ->setWarnings(false)
+            ->stream("$orgName.pdf");
     }
 }
