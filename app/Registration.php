@@ -65,7 +65,9 @@ class Registration extends Model
 
     public function filterApplicants($filters = [])
     {
-        $applications = $this->with('applicant');
+        $applications = $this->whereHas('applicant',function($q){
+            $q->where('registered',true);
+        });
         $filters = array_filter($filters);
 
         if(!empty($filters)){
