@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\NSTApplicationUpdate;
 use App\Registration;
+use Facades\App\Log;
 use Illuminate\Http\Request;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
@@ -53,6 +54,10 @@ class RegistrationController extends Controller
 
         auth()->user()->updateRegistration($data);
 
+        $name = $data['business_name'];
+
+        Log::add("$name submitted a new application");
+
         return back()->with('notification','Your registration has been submitted for review, expect to hear from NST soon.');
     }
 
@@ -89,12 +94,35 @@ class RegistrationController extends Controller
             $q->where('registered',true);
         })->get();
 
+        $name = auth()->user()->name;
+
+        Log::add("$name is viewing applications list");
+
+
+        return view('registrations',compact('registrations'));
+    }
+
+    public function filterApplications(Request $request,Registration $registration)
+    {
+        $filters = $request->all();
+
+        $registrations = $registration->filterApplicants($filters);
+
+        $name = auth()->user()->name;
+
+        Log::add("$name is filtering through applications");
+
         return view('registrations',compact('registrations'));
     }
 
     public function viewApplication(Registration $registration)
     {
         if(!auth()->user()->is_admin) return abort(403);
+
+        $name = auth()->user()->name;
+        $company = $registration->business_name;
+
+        Log::add("$name is viewing $company application");
 
         return view('view-registration',compact('registration'));
     }
@@ -123,6 +151,11 @@ class RegistrationController extends Controller
                 'qr' => $this->generateQR($registration, $certificateID),
             ]);
         }
+
+        $name = auth()->user()->name;
+        $company = $registration->business_name;
+
+        Log::add("$name updated $company application status to $status");
 
         Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
 

@@ -54,3 +54,26 @@ thead tr td{
 a.list-group-item, button.list-group-item {
     color: #000 !important;
 }
+
+.mt-1{
+    margin-top: 2%;
+}
+
+.mt-2{
+    margin-top: 2%;
+}
+
+.d-inline-block{
+    display: inline-block;
+}
+
+#log-book{
+    font-size: 12px;
+    padding: 5px;
+    height: 190px;
+    overflow-y: scroll;
+}
+
+#log-book p{
+    border-bottom: 1px solid grey
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Facade\App\Log;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -80,6 +81,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
         ]);
+
+        $name = $user->name;
+        $type = $data['user_type'];
+
+        Log::add("$name created account as a $type");
 
         return $user;
     }

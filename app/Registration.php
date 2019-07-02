@@ -62,4 +62,58 @@ class Registration extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function filterApplicants($filters = [])
+    {
+        $applications = $this->with('applicant');
+        $filters = array_filter($filters);
+
+        if(!empty($filters)){
+            $applications = $this->buildFilterQuery($this, $filters);
+        }
+
+        //dd($applications->toSql());
+        return $applications->get();
+    }
+
+    private function buildFilterQuery($model, $filters)
+    {
+        foreach ($filters as $filter => $value){
+            $model = call_user_func_array([$this,camel_case('filter by '. $filter)],[$model, $value, $filters]);
+        }
+
+        return $model;
+    }
+
+    private function filterByIssueDate($model, $value)
+    {
+        return $model->whereYear('certification_start_date',$value);
+    }
+
+    private function filterByCompanyName($model, $value)
+    {
+        return $model->where('business_name','LIKE',"%$value%");
+    }
+
+    private function filterByProducerType($model, $value)
+    {
+        return $model->whereHas('applicant',function ($query) use($value) {
+            $query->where('user_type',$value);
+        });
+    }
+
+    private function filterByApplicationStatus($model, $value)
+    {
+        return $model->where('application_status',$value);
+    }
+
+    private function filterByState($model, $value)
+    {
+        return $model->where('state',$value);
+    }
+
+    private function filterByRegistrationNo($model, $value)
+    {
+        return $model->where('certificate_id',$value);
+    }
 }

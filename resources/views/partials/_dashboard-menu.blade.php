@@ -26,19 +26,32 @@
         <a href="{{route('account.edit')}}" class="list-group-item list-group-item-action {{$route === 'account.edit' ? 'active' : ''}}">Edit Profile</a>
         <a href="{{route('account.password')}}" class="list-group-item list-group-item-action {{$route === 'account.password' ? 'active' : ''}}">Update Password</a>
         @if(auth()->user()->is_admin)
-            <a href="{{route('applications.review')}}" class="list-group-item list-group-item-action {{$route === 'applications.review' ? 'active' : ''}}">
-                Review Applications
+            <a href="{{route('applications.review')}}" class="list-group-item list-group-item-action {{$route === 'applications.review'  || $route === 'applications.filter'  ? 'active' : ''}}">
+                Applications
             </a>
         @else
             <a href="{{route('company.registration')}}" class="list-group-item list-group-item-action {{$route === 'company.registration' ? 'active' : ''}}">
                 {{auth()->user()->seedCompany() ? 'Company' : 'Producer'}} Registration
             </a>
         @endif
-
         <a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"
            class="list-group-item list-group-item-action">Logout</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
     </div>
+    @if(auth()->user()->is_admin)
+        <div class="panel mb-none panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Log history</h3>
+            </div>
+            <div class="panel-body" id="log-book">
+                @foreach($logs as $log)
+                    <p class="mb-0point5">
+                        <span class="text-danger">{{$log->created_at}}</span> {{$log->description}}
+                    </p>
+                @endforeach
+            </div>
+        </div>
+    @endif
 </div>

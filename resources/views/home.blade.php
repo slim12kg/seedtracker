@@ -40,7 +40,7 @@
 
                     @if(auth()->user()->is_admin)
                         <div class="alert alert-danger text-left">
-                            You have <strong><u><a href="{{route('applications.review')}}">{{$pending}} Pending</a></u></strong>
+                            You have <strong><u><a href="{{route('applications.filter',['application_status' =>'pending'])}}">{{$pending}} Pending</a></u></strong>
                             applications to review.
                         </div>
                     @endif

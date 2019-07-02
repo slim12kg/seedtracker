@@ -7,6 +7,7 @@ use App\AccountActivation;
 use App\Http\Middleware\ActivateAccount;
 use App\Http\Requests\updateAccount;
 use App\Http\Requests\updatePassword;
+use App\Log;
 use App\User;
 
 class AccountController extends Controller
@@ -37,12 +38,20 @@ class AccountController extends Controller
 
         auth()->user()->update($data);
 
+        $name = auth()->user()->name;
+
+        Log::add("$name updated account profile");
+
         return back()->with('notification','Your profile was successfully updated');
     }
 
     public function updatePassword(updatePassword $updatePassword)
     {
         auth()->user()->update(['password' => bcrypt($updatePassword->get('password'))]);
+
+        $name = auth()->user()->name;
+
+        Log::add("$name updated account password");
 
         return back()->with('notification','Your password was successfully updated');
     }
@@ -54,6 +63,11 @@ class AccountController extends Controller
         if(!$account) abort(404);
 
         $account->update(['verified' => 1]);
+
+        $name = $account->applicant->name;
+        $type = $account->applicant->user_type;
+
+        Log::add("$name activated account on NST as a $type");
 
         return redirect()->route('login')
             ->with('error','Account successfully activated, provide your login details to continue');

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -54,9 +55,15 @@ class AppServiceProvider extends ServiceProvider
             'Zamfara',
         ];
 
-        View::composer('partials.registration-form._business-bio', function ($view) use ($states){
+        View::composer(['partials.registration-form._business-bio','registrations'], function ($view) use ($states){
             $view->with([
                'states' => $states
+            ]);
+        });
+
+        View::composer(['partials._dashboard-menu'], function ($view) use ($states){
+            $view->with([
+                'logs' => Log::latest()->limit(50)->get()
             ]);
         });
     }
