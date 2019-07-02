@@ -71,7 +71,7 @@ class Registration extends Model
         $filters = array_filter($filters);
 
         if(!empty($filters)){
-            $applications = $this->buildFilterQuery($this, $filters);
+            $applications = $this->buildFilterQuery($applications, $filters);
         }
 
         //dd($applications->toSql());
