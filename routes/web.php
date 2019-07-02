@@ -40,6 +40,8 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');
 Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
 
+Route::get('check-for-certificate-expiry','CertificateNotificationController@checkForExpiringCertificate');
+
 Route::get('demo',function(){
 
     dd(date('d-m-Y',strtotime('2019-06-02')));

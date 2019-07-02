@@ -74,7 +74,6 @@ class Registration extends Model
             $applications = $this->buildFilterQuery($applications, $filters);
         }
 
-        //dd($applications->toSql());
         return $applications->get();
     }
 
