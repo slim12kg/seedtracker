@@ -85,7 +85,7 @@ class RegisterController extends Controller
         $name = $user->name;
         $type = $data['user_type'];
 
-        Log::add("$name created account as a $type");
+       // Log::add("$name created account as a $type");
 
         return $user;
     }
