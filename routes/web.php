@@ -41,7 +41,7 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
 
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');
 Route::get('/certificate/{certificate_id}', 'AccountController@verifyCertificate')->name('certificate.verify');
-//Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
+Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
 
 Route::get('check-for-certificate-expiry','CertificateNotificationController@checkForExpiringCertificate');
 
