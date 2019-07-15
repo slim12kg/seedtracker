@@ -181,45 +181,75 @@
                         @endforeach
                     </table>
 
-                    <h4>Training</h4>
-                    @if($registration->trainings_received === 'yes')
-                        @foreach($registration->trainings['crop_trained'] as  $key => $training)
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td>Training</td>
-                                    <td>00{{$key + 1}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Crop trained</td>
-                                    <td>{{$training}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Organizer institute</td>
-                                    <td>{{$registration->trainings['organizer_institute'][$key]}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Organizer name</td>
-                                    <td>{{$registration->trainings['organizer_name'][$key]}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of training</td>
-                                    <td>{{$registration->trainings['date_of_training'][$key]}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Evidence of training</td>
-                                    <td>[File attached]</td>
-                                    {{--<td>Click <a target="_blank" href="{{url($registration->trainings['evidence'][$key])}}">here</a> to view</td>--}}
-                                </tr>
-                            </table>
-                        @endforeach
-                    @else
-                        <table class="table">
+                    @if($registration->applicant->seedCompany())
+                        <h4>Finance</h4>
+                        <table class="table table-bordered">
                             <tr>
-                                <td>Trainings received in seed production</td>
-                                <td>{{$registration->trainings_received}}</td>
+                                <td>Breeder (nos.)</td>
+                                <td>{{$registration->trained_breeder}}</td>
+                            </tr>
+                            <tr>
+                                <td>Seed analyst (nos)</td>
+                                <td>{{$registration->trained_seed_analyst}}</td>
+                            </tr>
+                            <tr>
+                                <td>Agronomist (nos)</td>
+                                <td>{{$registration->trained_agronomist}}</td>
+                            </tr>
+                            <tr>
+                                <td>Finance to cover operation (₦)</td>
+                                <td>{{number_format($registration->finance_to_cover_operation)}}</td>
+                            </tr>
+                            <tr>
+                                <td>Evidence of incorporation</td>
+                                <td>[File attached]</td>
                             </tr>
                         </table>
                     @endif
+
+                    @if(!$registration->applicant->seedCompany())
+                        <h4>Training</h4>
+                        @if($registration->trainings_received === 'yes')
+                            @foreach($registration->trainings['crop_trained'] as  $key => $training)
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td>Training</td>
+                                        <td>00{{$key + 1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Crop trained</td>
+                                        <td>{{$training}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Organizer institute</td>
+                                        <td>{{$registration->trainings['organizer_institute'][$key]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Organizer name</td>
+                                        <td>{{$registration->trainings['organizer_name'][$key]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of training</td>
+                                        <td>{{$registration->trainings['date_of_training'][$key]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Evidence of training</td>
+                                        <td>[File attached]</td>
+                                        {{--<td>Click <a target="_blank" href="{{url($registration->trainings['evidence'][$key])}}">here</a> to view</td>--}}
+                                    </tr>
+                                </table>
+                            @endforeach
+                        @else
+                            <table class="table">
+                                <tr>
+                                    <td>Trainings received in seed production</td>
+                                    <td>{{$registration->trainings_received}}</td>
+                                </tr>
+                            </table>
+                        @endif
+                    @endif
+
+
 
                     <a href="{{url()->previous()}}" class="btn btn-primary">
                         <strong>Back</strong>
