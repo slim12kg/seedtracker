@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12" style="margin-bottom: 0.5%">&nbsp;</div>
-                            <button style="margin-left: 2.5%" class="btn btn-primary" type="submit">Complete Registration</button>
+                            <button style="margin-left: 2.5%" class="btn btn-primary" type="submit">Submit Application</button>
                         </div>
                     </form>
                 </div>

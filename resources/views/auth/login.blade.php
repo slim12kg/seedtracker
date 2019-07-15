@@ -13,7 +13,7 @@
                                 {{session('error')}}
                             </div>
                         @endif
-                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('login') }}" name="login-form">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="col-md-6 col-md-offset-4 col-sm-12">
-                                <div class="g-recaptcha pull-left" data-sitekey="6Le9vpwUAAAAAFCsxhfzcVLIuZok9hXDUaiR2ry5"></div>
+                                <div class="pull-left" id="render-captcha"></div>
                             </div>
 
                             <div class="form-group">
@@ -75,4 +75,39 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://www.google.com/recaptcha/api.js?onload=reCaptchaCallback&render=explicit" async defer></script>
+
+    <script>
+        var RC2KEY = '6Le9vpwUAAAAAFCsxhfzcVLIuZok9hXDUaiR2ry5',
+            doSubmit = false;
+
+        function reCaptchaVerify(response) {
+            if (response === document.querySelector('.g-recaptcha-response').value) {
+                doSubmit = true;
+            }
+        }
+
+        function reCaptchaExpired () {
+            alert('Captcha expired');
+           window.location.reload();
+        }
+
+        function reCaptchaCallback () {
+            grecaptcha.render('render-captcha', {
+                'sitekey': RC2KEY,
+                'callback': reCaptchaVerify,
+                'expired-callback': reCaptchaExpired
+            });
+        }
+
+        document.forms['login-form'].addEventListener('submit',function(e){
+            if (!doSubmit) {
+                e.preventDefault();
+                return false;
+            }
+        })
+    </script>
 @endsection

@@ -67,7 +67,7 @@ class Registration extends Model
     {
         $applications = $this->whereHas('applicant',function($q){
             $q->where('registered',true);
-        });
+        })->where('application_status','!=','draft');
         $filters = array_filter($filters);
 
         if(!empty($filters)){

@@ -25,8 +25,15 @@
 
                     @if(auth()->user()->registered)
                         <div class="alert alert-danger text-left">
-                            Application status: <strong class="text-capitalize">{{$status = auth()->user()->registration->application_status}}</strong>.
-                            @if($status !== 'pending')
+                            @php
+                                $status = auth()->user()->registration->application_status
+                            @endphp
+
+                            @if($status == 'draft')
+                                Your application is still a <strong>draft</strong>, please review and submit.
+                            @elseif($status !== 'pending')
+                                Your application status: <strong class="text-capitalizes">{{$status}}</strong>.
+
                                 @if($status !== 'approved')
                                     <br>
                                     Reason: <span>{{auth()->user()->registration->status_reason}}</span>
@@ -34,6 +41,8 @@
                                     <br>
                                     Click <a target="_blank" href="{{route('certificate')}}">here</a> to print your verified certificate
                                 @endif
+                            @else
+                                Your application status: <strong class="text-capitalizes">{{$status}}</strong>
                             @endif
                         </div>
                     @endif

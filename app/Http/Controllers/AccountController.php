@@ -8,7 +8,10 @@ use App\Http\Middleware\ActivateAccount;
 use App\Http\Requests\updateAccount;
 use App\Http\Requests\updatePassword;
 use App\Log;
+use App\Registration;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class AccountController extends Controller
 {
@@ -71,5 +74,20 @@ class AccountController extends Controller
 
         return redirect()->route('login')
             ->with('error','Account successfully activated, provide your login details to continue');
+    }
+
+    public function verifyCertificate($certificateId, Registration $registration)
+    {
+        $applicant = $registration->where('application_status','approved')->where('certificate_id',$certificateId)->first();
+
+        if(!$applicant) abort('404');
+
+        $data = ['registration' => $applicant];
+        $orgName = $applicant->business_name;
+
+        return PDF::loadView('certificate', $data)
+            ->setPaper('a4', 'landscape')
+            ->setWarnings(false)
+            ->stream("$orgName.pdf");
     }
 }

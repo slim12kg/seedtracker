@@ -50,15 +50,28 @@ class RegistrationController extends Controller
             $data['trainings'] = serialize($data['trainings']);
         }
 
-        $data['application_status'] = 'pending';
+        $data['application_status'] = 'draft';
 
-        auth()->user()->updateRegistration($data);
+        $registration = auth()->user()->updateRegistration($data);
 
         $name = $data['business_name'];
 
         Log::add("$name submitted a new application");
 
-        return back()->with('notification','Your registration has been submitted for review, expect to hear from NST soon.');
+        return view('review',compact('registration'));
+    }
+
+    public function submitApplication()
+    {
+        $name = auth()->user()->registration->business_name;
+
+        Log::add("$name submitted a new application");
+
+        auth()->user()->updateRegistration([
+            'application_status' => 'pending'
+        ]);
+
+        return redirect()->route('home')->with('notification','Your registration has been submitted for review, expect to hear from NST soon.');
     }
 
     private function uploadEvidenceOfIncorporation(Request $request)
@@ -92,7 +105,7 @@ class RegistrationController extends Controller
     {
         $registrations = $registration->whereHas('applicant',function($q){
             $q->where('registered',true);
-        })->get();
+        })->where('application_status','!=','draft')->get();
 
         $name = auth()->user()->name;
 

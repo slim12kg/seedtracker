@@ -25,6 +25,7 @@ Route::get('/contact-us', 'HomeController@contact')->name('contact');
 Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->get('/company-profile', 'RegistrationController@company')->name('company.registration');
     $route->post('/company-profile', 'RegistrationController@completeRegistration')->name('registration.complete');
+    $route->put('/company-profile', 'RegistrationController@submitApplication')->name('registration.submit');
     $route->get('/edit', 'AccountController@edit')->name('account.edit');
     $route->put('/edit', 'AccountController@update')->name('account.update');
     $route->get('/update-password', 'AccountController@editPassword')->name('account.password');
@@ -35,10 +36,12 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->put('/applications/{registration}', 'RegistrationController@updateApplicationStatus')->name('applications.update-status');
     $route->get('certificate', 'RegistrationController@certificate')->name('certificate');
     $route->get('certificate/{registration}', 'RegistrationController@viewApplicantCertificate')->name('certificate.view');
+    $route->post('communication/mail', 'CommunicationController@mailApplicant')->name('mail-applicant');
 });
 
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');
-Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
+Route::get('/certificate/{certificate_id}', 'AccountController@verifyCertificate')->name('certificate.verify');
+//Route::get('/verify/{certificate_id}', 'AccountController@activate')->name('application.verify');
 
 Route::get('check-for-certificate-expiry','CertificateNotificationController@checkForExpiringCertificate');
 
