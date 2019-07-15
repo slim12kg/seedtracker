@@ -86,7 +86,6 @@
                             <td>{{$registration->how_long_in_seed_business}}</td>
                         </tr>
                     </table>
-
                     <h4 class="next-page">Seed Info</h4>
                     <table class="table table-bordered">
                         {{--Seed Info--}}

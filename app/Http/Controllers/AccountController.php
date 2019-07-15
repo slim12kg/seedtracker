@@ -7,7 +7,7 @@ use App\AccountActivation;
 use App\Http\Middleware\ActivateAccount;
 use App\Http\Requests\updateAccount;
 use App\Http\Requests\updatePassword;
-use App\Log;
+use Facades\App\Log;
 use App\Registration;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
