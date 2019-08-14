@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname','email', 'password','phone','user_type','gender','profession','profile_image','registered'
+        'firstname', 'lastname','email', 'password','phone','user_type','gender','profession','profile_image','registered','type_category'
     ];
 
     /**
@@ -66,12 +66,12 @@ class User extends Authenticatable
     {
         if($this->registration) {
             $this->registration()->update($data);
-            $this->update(['registered' => true]);
+            $resgistration = $this->update(['registered' => true]);
         }else{
-            $this->registration()->create($data);
+            $resgistration = $this->registration()->create($data);
         }
 
-        return $this->registration;
+        return $resgistration;
     }
 
     public function activationToken()

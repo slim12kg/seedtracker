@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "bacon/bacon-qr-code": "^2.0",
         "barryvdh/laravel-dompdf": "v0.8.0",
+        "doctrine/dbal": "^2.9",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },

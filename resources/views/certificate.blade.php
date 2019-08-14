@@ -27,7 +27,11 @@
                 <strong class="">{{$registration->updated_at->format('F Y')}}</strong>
                 been licensed as a
             </p>
-            <h3>Seed Producer and Seller</h3>
+            @if($registration->applicant->seedCompany())
+                <h3 style="text-transform:capitalize">{{ucfirst($registration->applicant->type_category)}}</h3>
+            @else
+                <h3 style="text-transform:capitalize">{{ucfirst($registration->applicant->user_type)}}</h3>
+            @endif
             <p>
                 from
             <p>

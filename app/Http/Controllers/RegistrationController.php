@@ -30,6 +30,7 @@ class RegistrationController extends Controller
     public function completeRegistration(Request $request)
     {
         $data = $request->except('_token','terms');
+
         $data['place_of_businesses'] = serialize($data['place_of_businesses']);
 
         if(auth()->user()->seedCompany()) {
@@ -40,19 +41,21 @@ class RegistrationController extends Controller
         $data['list_of_crop_to_be_handled'] = serialize($data['list_of_crop_to_be_handled']);
         $data['other_facilities_available'] = serialize($data['other_facilities_available']);
 
-        if($request->hasFile('evidence_of_inc')) $data['evidence_of_inc'] = $this->uploadEvidenceOfIncorporation($request);
+        if($request->hasFile('evidence_of_inc')) {
+            $data['evidence_of_inc'] = $this->uploadEvidenceOfIncorporation($request);
+        }
 
         if(auth()->user()->communitySeedProducer()) {
             if(isset($request->file('trainings')['evidence'])) {
                 $data['trainings']['evidence'] = $this->uploadEvidenceOfTraining($request);
             }
-
-            $data['trainings'] = serialize($data['trainings']);
         }
+
+        if(isset($data['trainings'])) $data['trainings'] = serialize($data['trainings']);
 
         $data['application_status'] = 'draft';
 
-        $registration = auth()->user()->updateRegistration($data);
+        $registration  = auth()->user()->updateRegistration($data);
 
         $name = $data['business_name'];
 
@@ -145,9 +148,7 @@ class RegistrationController extends Controller
         if(!auth()->user()->is_admin) return abort(403);
 
         $applicant = $registration->applicant;
-        $approvedApplications = $registration->where('application_status','approved')->count();
-        $approvedApplications += 1;
-        $certificateID   = substr('000000'. $approvedApplications,-5);
+        $certificateID = $registration->generateRef();
         $status = $request->get('status');
 
         $registration->update([
@@ -173,6 +174,13 @@ class RegistrationController extends Controller
         Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
 
         return back()->with('notification','Application status successfully updated!');
+    }
+
+    public function updateCategory(Registration $registration,Request $request)
+    {
+        $registration->applicant()->update($request->only('user_type','type_category'));
+
+        return back()->with('notification','Applicant type was successfully updated!');
     }
 
     private function generateQR($registration,$certificateID)

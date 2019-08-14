@@ -22,7 +22,7 @@
 
 <div class="col-md-6 mb-3">
     <label for="phone">Phone no.</label>
-    <input type="text" class="form-control" id="phone" name="phone" value="{{old('phone',$registration->phone)}}" required>
+    <input type="text" class="form-control" id="phone" readonly name="phone" value="{{old('phone',$registration->phone)}}" required>
     @if (!$errors->has('phone'))
         <div class="text-danger">
             {{$errors->first('phone')}}
@@ -32,7 +32,7 @@
 
 <div class="col-md-6 mb-3">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" value="{{old('email',$registration->email)}}" required>
+    <input type="email" class="form-control" id="email" readonly name="email" value="{{old('email',$registration->email)}}" required>
     @if (!$errors->has('email'))
         <div class="text-danger">
             {{$errors->first('email')}}

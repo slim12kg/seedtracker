@@ -52,7 +52,8 @@ class RegisterController extends Controller
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'phone' => 'required|string|max:255|unique:users',
-            'user_type' => 'required|string|max:255|in:seed company,community seed producer',
+            'user_type' => 'required|string|max:255|in:seed company,community seed producer,research organization',
+            'type_category' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -72,6 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'user_type' => $data['user_type'],
+            'type_category' => $data['type_category'],
             'password' => bcrypt($data['password']),
         ]);
 

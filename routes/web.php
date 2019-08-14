@@ -34,6 +34,7 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->get('/applications/filter', 'RegistrationController@filterApplications')->name('applications.filter');
     $route->get('/applications/{registration}', 'RegistrationController@viewApplication')->name('applications.view');
     $route->put('/applications/{registration}', 'RegistrationController@updateApplicationStatus')->name('applications.update-status');
+    $route->put('/applications/category/{registration}', 'RegistrationController@updateCategory')->name('applications.update-category');
     $route->get('certificate', 'RegistrationController@certificate')->name('certificate');
     $route->get('certificate/{registration}', 'RegistrationController@viewApplicantCertificate')->name('certificate.view');
     $route->post('communication/mail', 'CommunicationController@mailApplicant')->name('mail-applicant');

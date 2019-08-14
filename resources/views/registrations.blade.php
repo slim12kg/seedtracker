@@ -32,6 +32,8 @@
                                             value="seed company">Seed Company</option>
                                     <option {{request('producer_type') == "community seed producer" ? 'selected' : ''}}
                                             value="community seed producer">Community Seed Producer</option>
+                                    <option {{request('producer_type') == "research organization" ? 'selected' : ''}}
+                                            value="research organization">Research Organization / NGO's</option>
                                 </select>
                             </div>
                             <div class="col-md-4 mt-1">

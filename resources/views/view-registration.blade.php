@@ -137,6 +137,14 @@
     </div>
 @endsection
 
+@section('styles')
+    <style>
+        .d-none{
+            display:none;
+        }
+    </style>
+@endsection
+
 @section('scripts')
     <script>
         function  setStatus(status, title)

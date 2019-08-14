@@ -51,14 +51,16 @@
                             <td>Country</td>
                             <td>{{$registration->country}}</td>
                         </tr>
-                        <tr>
-                            <td>Places of business</td>
-                            <td>
-                                @foreach($registration->place_of_businesses as $key => $business)
-                                    {{$business}} {{$key == count($registration->place_of_businesses) - 1 ? '' : ','}}
-                                @endforeach
-                            </td>
-                        </tr>
+                        @if(is_array($registration->place_of_businesses))
+                            <tr>
+                                <td>Places of business</td>
+                                <td>
+                                    @foreach($registration->place_of_businesses as $key => $business)
+                                        {{$business}} {{$key == count($registration->place_of_businesses) - 1 ? '' : ','}}
+                                    @endforeach
+                                </td>
+                            </tr>
+                        @endif
                         @if($registration->applicant->seedCompany())
                             <tr>
                                 <td>Category of business</td>

@@ -117,4 +117,28 @@ class Registration extends Model
     {
         return $model->where('certificate_id',$value);
     }
+
+    public function generateRef()
+    {
+        $year = date('Y');
+        $type = 'SC';
+        $userType = $this->applicant->user_type;
+        $number = $this->applicant()->where('user_type',$userType)->whereYear('created_at',$year)->count();
+
+        switch ($userType){
+            case "seed company":
+                $type = 'SC';
+                break;
+            case "community seed producer":
+                $type = 'CSP';
+                break;
+            case "research organization":
+                $type = 'RO';
+                break;
+        }
+
+        $reference = $type.'-'.$year.'-'.$number;
+
+        return $reference;
+    }
 }
