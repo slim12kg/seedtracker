@@ -33,6 +33,12 @@
                         @endif
                     </ul>
 
+                    @php
+                        $type = $registration->applicant->user_type;
+                        $category = $registration->applicant->type_category;
+                    @endphp
+
+                    
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active">
                             @include('partials.view-registration._personal-bio')
@@ -149,6 +155,7 @@
     <script>
         function  setStatus(status, title)
         {
+            console.log(status,title);
             document.getElementById('application_status').value = status;
             document.getElementById('update_type').innerHTML = title;
 
@@ -160,6 +167,55 @@
             }else{
                 group.addClass('hide');
                 group.find('input').removeAttr('required');
+            }
+        }
+
+        @if($type)
+        $(function(){
+            toggleType('{{$type}}');
+        });
+        @endif
+
+        $(function () {
+            $(document).on('change','[name=user_type]',function(e){
+                var type = $('[name=user_type]:checked').val();
+
+                toggleType(type);
+            });
+        });
+
+        function toggleType(type) {
+            var wrap = $('.select_cat');
+            var seedCompany = $('.seed_company');
+            var researchOrg = $('.research_org');
+            var comProducer = $('.com_seed_company');
+            var regType = $('#type-fields');
+
+            switch (type){
+                case "seed company":
+                    regType.removeClass('d-none');
+                    wrap.removeClass('d-none');
+                    seedCompany.removeClass('d-none');
+                    researchOrg.addClass('d-none');
+                    researchOrg.addClass('d-none');
+                    break;
+                case "research organization":
+                    regType.removeClass('d-none');
+                    wrap.removeClass('d-none');
+                    researchOrg.removeClass('d-none');
+                    seedCompany.addClass('d-none');
+                    comProducer.addClass('d-none');
+                    break;
+                case "community seed producer":
+                    regType.addClass('d-none');
+                    wrap.addClass('d-none');
+                    seedCompany.addClass('d-none');
+                    researchOrg.addClass('d-none');
+                    researchOrg.addClass('d-none');
+                    break;
+                default:
+                    regType.addClass('d-none');
+                    break;
             }
         }
     </script>

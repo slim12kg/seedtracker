@@ -17,11 +17,6 @@
     </tr>
 </table>
 
-@php
-    $type = $registration->applicant->user_type;
-    $category = $registration->applicant->type_category;
-@endphp
-
 <form action="{{route('applications.update-category',$registration)}}" method="POST"
         {{$type == 'community seed producer' ? 'd-none' : ''}}>
     {{method_field('PUT')}}
@@ -128,7 +123,7 @@
 
     <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
-            @if($registration->application_status === 'approved')
+            @if($registration->application_status != 'approved')
                 <button type="submit" class="btn btn-primary">
                     Update
                 </button>
@@ -228,56 +223,3 @@
         </div>
     </div>
 </div>
-
-@section('scripts')
-    <script>
-        @if($type)
-        $(function(){
-            toggleType('{{$type}}');
-        });
-        @endif
-
-        $(function () {
-            $(document).on('change','[name=user_type]',function(e){
-                var type = $('[name=user_type]:checked').val();
-
-                toggleType(type);
-            });
-        });
-
-        function toggleType(type) {
-            var wrap = $('.select_cat');
-            var seedCompany = $('.seed_company');
-            var researchOrg = $('.research_org');
-            var comProducer = $('.com_seed_company');
-            var regType = $('#type-fields');
-
-            switch (type){
-                case "seed company":
-                    regType.removeClass('d-none');
-                    wrap.removeClass('d-none');
-                    seedCompany.removeClass('d-none');
-                    researchOrg.addClass('d-none');
-                    researchOrg.addClass('d-none');
-                    break;
-                case "research organization":
-                    regType.removeClass('d-none');
-                    wrap.removeClass('d-none');
-                    researchOrg.removeClass('d-none');
-                    seedCompany.addClass('d-none');
-                    comProducer.addClass('d-none');
-                    break;
-                case "community seed producer":
-                    regType.addClass('d-none');
-                    wrap.addClass('d-none');
-                    seedCompany.addClass('d-none');
-                    researchOrg.addClass('d-none');
-                    researchOrg.addClass('d-none');
-                    break;
-                default:
-                    regType.addClass('d-none');
-                    break;
-            }
-        }
-    </script>
-@endsection
