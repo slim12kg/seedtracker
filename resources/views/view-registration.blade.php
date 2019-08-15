@@ -38,7 +38,7 @@
                         $category = $registration->applicant->type_category;
                     @endphp
 
-                    
+
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active">
                             @include('partials.view-registration._personal-bio')

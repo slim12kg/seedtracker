@@ -71,8 +71,8 @@
                     </label>
                 </div>
                 <div class="form-check seed_company d-none">
-                    <input class="form-check-input" required type="radio" name="type_category" {{$category == 'seed company' ? 'checked' : ''}}
-                    id="seed_producer_seller" value="seed company">
+                    <input class="form-check-input" required type="radio" name="type_category" {{$category == 'seed producer and seller' ? 'checked' : ''}}
+                    id="seed_producer_seller" value="seed producer and seller">
                     <label class="form-check-label font-normal" for="seed_producer_seller">
                         Seed Producer and Seller
                     </label>
