@@ -61,6 +61,8 @@ class RegistrationController extends Controller
 
         Log::add("$name submitted a new application");
 
+        //dd($registration->name_of_board_of_directors);
+
         return view('review',compact('registration'));
     }
 

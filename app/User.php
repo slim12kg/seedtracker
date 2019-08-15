@@ -64,14 +64,16 @@ class User extends Authenticatable
 
     public function updateRegistration($data)
     {
-        if($this->registration) {
+        $registration = $this->registration;
+
+        if($registration) {
             $this->registration()->update($data);
-            $resgistration = $this->update(['registered' => true]);
+            $this->update(['registered' => true]);
         }else{
-            $resgistration = $this->registration()->create($data);
+            $registration = $this->registration()->create($data);
         }
 
-        return $resgistration;
+        return $registration;
     }
 
     public function activationToken()
