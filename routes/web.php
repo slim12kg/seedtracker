@@ -40,7 +40,7 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->post('communication/mail', 'CommunicationController@mailApplicant')->name('mail-applicant');
 
     $route->get('/application/print/{registration}', 'RegistrationController@printApplication')->name('applications.print');
-    $route->get('/application/review/{registration}', 'RegistrationController@review')->name('applications.review');
+    $route->get('/application/review/{registration}', 'RegistrationController@review')->name('application.review');
 
 });
 

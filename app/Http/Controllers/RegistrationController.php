@@ -66,7 +66,7 @@ class RegistrationController extends Controller
 
         $registration  = auth()->user()->registration;
 
-        return redirect()->route('applications.review',$registration);
+        return redirect()->route('application.review',$registration);
     }
 
     public function review(Registration $registration)
