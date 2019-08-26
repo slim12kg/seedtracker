@@ -52,7 +52,10 @@ class RegistrationController extends Controller
             }
         }
 
-        if(isset($data['trainings'])) $data['trainings'] = serialize($data['trainings']);
+        dd($data);
+        if(isset($data['trainings'])) {
+            $data['trainings'] = serialize($data['trainings']);
+        }
 
         $data['application_status'] = 'draft';
 
