@@ -28,8 +28,11 @@ class HomeController extends Controller
         $pending = $registration->where('application_status','pending')->whereHas('applicant',function($q){
             $q->where('registered',true);
         })->count();
+        $provisional = $registration->where('provisional',1)->whereHas('applicant',function($q){
+            $q->where('registered',true);
+        })->count();
 
-        return view('home',compact('pending'));
+        return view('home',compact('pending','provisional'));
     }
 
     public function about()

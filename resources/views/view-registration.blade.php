@@ -11,7 +11,10 @@
                             <strong>{{$registration->applicant->user_type}}</strong>
                         </div>
                         <div class="col-md-6 text-right text-capitalize">
-                            <strong>Application Status:</strong> <span class="label label-danger">{{$registration->application_status}}</span>
+                            <strong>Application Status:</strong> <span class="label label-danger">
+                                {{$registration->application_status}}
+                                {{$registration->provisional ? '(Awaiting)' : ''}}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +78,7 @@
                 </div>
             </div>
 
-            @if($registration->application_status !== 'approved')
+            @if($registration->application_status !== 'approved' || auth()->user()->is_dg)
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="col-md-12">
@@ -111,18 +114,21 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="status_reason">Reason</label>
-                                    <textarea name="status_reason" class="form-control" id="status_reason" cols="30" rows="5"></textarea>
+                                    <textarea name="status_reason" class="form-control" id="status_reason" cols="30" rows="5">{{$registration->status_reason}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group hide" id="application_dates_from">
                                 <div class="col-md-6">
                                     <label for="certification_start_date">Certification dates from</label>
                                     <input type="date" name="certification_start_date"
-                                           id="certification_start_date" class="form-control">
+                                           id="certification_start_date"
+                                           value="{{$registration->certification_start_date->format('Y-m-d')}}"
+                                           class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="certification_end_date">Certification dates to</label>
                                     <input type="date" name="certification_end_date"
+                                           value="{{$registration->certification_end_date->format('Y-m-d')}}"
                                            id="certification_end_date" class="form-control">
                                 </div>
                             </div>

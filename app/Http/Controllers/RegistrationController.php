@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NSTApplicationIsAwaitingYourApproval;
 use App\Mail\NSTApplicationUpdate;
 use App\Registration;
 use Facades\App\Log;
@@ -55,13 +56,13 @@ class RegistrationController extends Controller
 
         $data['application_status'] = 'draft';
 
-        $registration  = auth()->user()->updateRegistration($data);
+        auth()->user()->updateRegistration($data);
 
         $name = $data['business_name'];
 
         Log::add("$name submitted a new application");
 
-        //dd($registration->name_of_board_of_directors);
+        $registration  = auth()->user()->registration;
 
         return view('review',compact('registration'));
     }
@@ -150,7 +151,6 @@ class RegistrationController extends Controller
         if(!auth()->user()->is_admin) return abort(403);
 
         $applicant = $registration->applicant;
-        $certificateID = $registration->generateRef();
         $status = $request->get('status');
 
         $registration->update([
@@ -161,19 +161,38 @@ class RegistrationController extends Controller
             'certification_end_date' => $request->get('certification_end_date'),
         ]);
 
-        if($status === "approved") {
-            $registration->update([
-                'certificate_id' => $certificateID,
-                'qr' => $this->generateQR($registration, $certificateID),
-            ]);
-        }
-
         $name = auth()->user()->name;
         $company = $registration->business_name;
 
-        Log::add("$name updated $company application status to $status");
+        if(auth()->user()->is_dg)
+        {
+            $certificateID = $registration->certificate_id ?: $registration->generateRef();
 
-        Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
+            if($status === "approved") {
+                $registration->update([
+                    'certificate_id' => $certificateID,
+                    'qr' => $this->generateQR($registration, $certificateID),
+                ]);
+            }
+
+            $registration->update([
+                'provisional' => 0,
+            ]);
+
+            Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
+
+            return redirect()->route('home')->with('notification','Application status successfully updated!');
+        }else{
+            $registration->update([
+                'provisional' => 1,
+            ]);
+
+            $dg = config('mail.directory.dg');
+
+            Mail::to($dg)->send(new NSTApplicationIsAwaitingYourApproval($registration));
+        }
+
+        Log::add("$name updated $company application status to $status");
 
         return back()->with('notification','Application status successfully updated!');
     }
@@ -232,9 +251,15 @@ class RegistrationController extends Controller
         $data = ['registration' => $registration];
         $orgName = $registration->business_name;
 
+        //return view('certificate',compact('registration'));
         return PDF::loadView('certificate', $data)
             ->setPaper('a4', 'landscape')
             ->setWarnings(false)
             ->stream("$orgName.pdf");
+    }
+
+    public function printApplication(Registration $registration)
+    {
+        return view('print',compact('registration'));
     }
 }

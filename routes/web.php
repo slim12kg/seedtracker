@@ -38,6 +38,9 @@ Route::group(['prefix' => 'account','middleware' => 'auth'],function($route){
     $route->get('certificate', 'RegistrationController@certificate')->name('certificate');
     $route->get('certificate/{registration}', 'RegistrationController@viewApplicantCertificate')->name('certificate.view');
     $route->post('communication/mail', 'CommunicationController@mailApplicant')->name('mail-applicant');
+
+    $route->get('/application/print/{registration}', 'RegistrationController@printApplication')->name('applications.print');
+
 });
 
 Route::get('account/activate/{token}', 'AccountController@activate')->name('account.activate');

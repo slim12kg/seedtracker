@@ -8,8 +8,8 @@
                 <div class="panel-heading">Submitted Applications</div>
 
                 <div class="panel-body">
-                    <div class="row mb-0point5">
-                        <form action="{{route('applications.filter')}}" methos="GET">
+                    <div class="row mb-0point5 {{auth()->user()->is_dg ? 'hide' :''}}">
+                        <form action="{{route('applications.filter')}}" method="GET">
                             <div class="col-md-3">
                                 <label for="issue_date">Issue Year</label>
                                 <select name="issue_date" id="issue_date" class="form-control">

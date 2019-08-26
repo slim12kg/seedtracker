@@ -22,7 +22,7 @@
                 It is hereby certify that subject to the provision of the National Agricultural Seeds Council Act No. 72 of 1992.
             </p>
             <h2 class="dotted-below" id="comp">{{$registration->business_name}}</h2>
-            <p style="margin-top: 1%;">
+            <p style="margin-top: 0.5%;">
                 has this <strong class="">{{$registration->updated_at->format('jS')}}</strong> day of
                 <strong class="">{{$registration->updated_at->format('F Y')}}</strong>
                 been licensed as a
@@ -32,16 +32,19 @@
             @else
                 <h3 style="text-transform:capitalize">{{ucfirst($registration->applicant->user_type)}}</h3>
             @endif
-            <p>
+            <p style="margin-bottom: 0;">
                 from
             <p>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h3 class="" id="from">{{$registration->certification_start_date->format('jS F, Y')}} to</h3>
+                    <h3 class="" id="from">{{$registration->certification_start_date->format('jS F, Y')}} &nbsp; to &nbsp; </h3>
                     <h3 class="" id="to">{{$registration->certification_end_date->format('jS F, Y')}}</h3>
                 </div>
+                <div class="col-md-12">
+                    <h5><strong>Approved On: {{$registration->created_at->format('jS F, Y')}}</strong></h5>
+                </div>
             </div>
-            <div class="row" style="margin-top: 4%;">
+            <div class="row" style="margin-top: 1%;">
                 <div style="width: 50%;float: left">
                     <img width="105" src="{{asset($registration->qr)}}" alt="">
                     <p>

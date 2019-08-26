@@ -25,11 +25,11 @@
         </a>
         <a href="{{route('account.edit')}}" class="list-group-item list-group-item-action {{$route === 'account.edit' ? 'active' : ''}}">Edit Profile</a>
         <a href="{{route('account.password')}}" class="list-group-item list-group-item-action {{$route === 'account.password' ? 'active' : ''}}">Update Password</a>
-        @if(auth()->user()->is_admin)
+        @if(auth()->user()->is_admin && !auth()->user()->is_dg)
             <a href="{{route('applications.review')}}" class="list-group-item list-group-item-action {{$route === 'applications.review'  || $route === 'applications.filter'  ? 'active' : ''}}">
                 Applications
             </a>
-        @else
+        @elseif(!auth()->user()->is_dg)
             <a href="{{route('company.registration')}}" class="list-group-item list-group-item-action {{$route === 'company.registration' ? 'active' : ''}}">
                 {{auth()->user()->seedCompany() ? 'Company' : 'Producer'}} Registration
             </a>

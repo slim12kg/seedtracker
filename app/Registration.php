@@ -118,6 +118,11 @@ class Registration extends Model
         return $model->where('certificate_id',$value);
     }
 
+    public function filterByProvisional($model, $value)
+    {
+        return $model->where('provisional',$value);
+    }
+
     public function generateRef()
     {
         $year = date('Y');

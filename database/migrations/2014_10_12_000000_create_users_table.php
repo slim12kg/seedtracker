@@ -32,8 +32,17 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert([
             'firstname' => 'NST',
+            'lastname' => 'DG',
+            'phone' => '08100000001',
+            'email' => 'aprimenexus@gmail.com',
+            'user_type' => 'super admin',
+            'password' => bcrypt('abcd1234'),
+        ]);
+
+        DB::table('users')->insert([
+            'firstname' => 'NST',
             'lastname' => 'personnel',
-            'phone' => '08100000000',
+            'phone' => '08100000002',
             'email' => 'nst@seedtracker.org',
             'user_type' => 'admin',
             'password' => bcrypt('abcd1234'),

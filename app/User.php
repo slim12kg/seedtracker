@@ -49,7 +49,12 @@ class User extends Authenticatable
 
     public function getIsAdminAttribute()
     {
-        return $this->user_type === "admin";
+        return $this->user_type === "admin" || $this->user_type === "super admin";
+    }
+
+    public function getIsDgAttribute()
+    {
+        return $this->user_type === "super admin";
     }
 
     public function getNameAttribute()

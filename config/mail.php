@@ -119,5 +119,8 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
+    'directory' => [
+        'dg' => env('DG_MAIL', 'nst@seedtracker.org'),
+    ]
 
 ];

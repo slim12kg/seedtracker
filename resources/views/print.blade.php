@@ -3,6 +3,12 @@
 @section('content')
     <div class="row mt-50" style="margin-top: 30px;margin-bottom:20px">
         {{--        @include('partials._dashboard-menu')--}}
+        <a href="{{url()->previous()}}" class="btn btn-primary">
+            <strong>Back</strong>
+        </a>
+        <a style="margin-left: 1.5%" onclick="event.preventDefault();window.print();" class="btn btn-primary">
+            <strong>Print Application</strong>
+        </a>
         <div class="col-md-12">
             <h1 class="text-center" style="margin-top: 0">NASC SEED TRACKER APPLICATION</h1>
             {{--<div class="panel panel-default">--}}
@@ -68,28 +74,17 @@
                             </tr>
                             <tr>
                                 <td>Names of proprietor / partner / manager</td>
-                                @php
-                                $proprietors = is_array($registration->name_of_proprietors) ?
-                                $registration->name_of_proprietors :
-                                unserialize($registration->name_of_proprietors)
-                                @endphp
                                 <td>
-                                    @foreach($proprietors as $key => $proprietor)
+                                    @foreach($registration->name_of_proprietors as $key => $proprietor)
                                         {{$proprietor}} {{$key == count($registration->name_of_proprietors) - 1 ? '' : ','}}
                                     @endforeach
                                 </td>
                             </tr>
                             <tr>
-                                @php
-                                    $directors = is_array($registration->name_of_board_of_directors) ?
-                                    $registration->name_of_board_of_directors :
-                                    unserialize($registration->name_of_board_of_directors)
-                                @endphp
                                 <td>Names of board of director</td>
                                 <td>
-                                    @foreach($directors as $key => $board_of_director)
-                                        {{$board_of_director}}
-                                        {{$key == count($registration->name_of_board_of_directors) - 1 ? '' : ','}}
+                                    @foreach($registration->name_of_board_of_directors as $key => $board_of_director)
+                                        {{$board_of_director}} {{$key == count($registration->name_of_board_of_directors) - 1 ? '' : ','}}
                                     @endforeach
                                 </td>
                             </tr>
@@ -262,17 +257,6 @@
                         @endif
                     @endif
 
-
-
-                    <a href="{{url()->previous()}}" class="btn btn-primary">
-                        <strong>Back</strong>
-                    </a>
-                    <a style="margin-left: 1.5%" onclick="event.preventDefault();window.print();" class="btn btn-primary">
-                        <strong>Print Application</strong>
-                    </a>
-                    <button style="margin-left: 1.5%" class="btn btn-primary" type="submit">
-                        <strong>Submit Application</strong>
-                    </button>
                 </div>
             </form>
             <div class="col-md-12" style="margin-bottom: 1.5%">&nbsp;</div>
@@ -299,4 +283,12 @@
             }
         }
     </style>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            window.print();
+        })
+    </script>
 @endsection

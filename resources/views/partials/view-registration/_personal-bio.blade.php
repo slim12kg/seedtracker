@@ -15,6 +15,25 @@
         <td>Date Submitted</td>
         <td>{{$registration->created_at->format('d M Y')}}</td>
     </tr>
+
+    @if($registration->status_reason)
+        <tr>
+            <td>Reason</td>
+            <td>{{$registration->status_reason}}</td>
+        </tr>
+    @endif
+    @if($registration->certification_start_date)
+        <tr>
+            <td>Certification Start Date</td>
+            <td>{{$registration->certification_start_date->format('d M Y')}}</td>
+        </tr>
+    @endif
+    @if($registration->certification_end_date)
+        <tr>
+            <td>Certification End Date</td>
+            <td>{{$registration->certification_end_date->format('d M Y')}}</td>
+        </tr>
+    @endif
 </table>
 
 <form action="{{route('applications.update-category',$registration)}}" method="POST"
@@ -123,7 +142,7 @@
 
     <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
-            @if($registration->application_status != 'approved')
+            @if($registration->application_status != 'approved' || auth()->user()->is_dg)
                 <button type="submit" class="btn btn-primary">
                     Update
                 </button>
@@ -132,25 +151,25 @@
                     Update
                 </a>
                 <div class="row">
-                   <div class="col-md-12">
-                       <small class="text-danger">
-                           Application already approved!
-                       </small>
-                   </div>
+                    <div class="col-md-12">
+                        <small class="text-danger">
+                            Application already approved!
+                        </small>
+                    </div>
                 </div>
             @endif
         </div>
     </div>
 </form>
 
-<div class="col mt-2">
-    <h5>Contact {{$registration->business_name}}</h5>
-</div>
 @php
     $personnel = auth()->user()->name;
     $applicant = $registration->fullname;
 @endphp
-<div class="col">
+<div class="col-md-8 pull-lefts">
+    <div class="col mt-2">
+        <h5>Contact {{$registration->business_name}}</h5>
+    </div>
     <a href="#" class="mr-1 d-inline-block" data-toggle="modal" data-target="#mail-applicant">
         <img width="32" src="{{asset('images/contact/mail.png')}}"/>
     </a>
@@ -159,6 +178,14 @@
     </a>
     <a href="https://wa.me/{{$registration->phone}}?text={{"Hello $applicant, I'm  $personnel from NASC"}}" class="mr-1 d-inline-block">
         <img width="32" src="{{asset('images/contact/whatsapp.png')}}"/>
+    </a>
+</div>
+<div class="col-md-4 text-center">
+    <div class="col mt-2">
+        <h5>Print Application</h5>
+    </div>
+    <a href="{{route('applications.print',$registration)}}">
+        <img width="32" src="{{asset('images/contact/printer-tool.png')}}"/>
     </a>
 </div>
 

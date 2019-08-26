@@ -47,10 +47,20 @@
                         </div>
                     @endif
 
-                    @if(auth()->user()->is_admin)
+                    @if(auth()->user()->is_admin && !auth()->user()->is_dg)
                         <div class="alert alert-danger text-left">
                             You have <strong><u><a href="{{route('applications.filter',['application_status' =>'pending'])}}">{{$pending}} Pending</a></u></strong>
                             applications to review.
+                        </div>
+                    @endif
+
+                    @if(auth()->user()->is_dg)
+                        <div class="alert alert-danger text-left">
+                            You have
+                                <a href="{{route('applications.filter',['provisional' => 1])}}">
+                                    <strong> <u>{{$provisional}} applications</u>  </strong>
+                                </a>
+                                awaiting your approval.
                         </div>
                     @endif
                 </div>
