@@ -42,6 +42,8 @@
                                     <br>
                                     Click <a target="_blank" href="{{route('certificate')}}">here</a> to print your verified certificate
                                 @endif
+                            @elseif($status !== 'pending' && $provisional)
+                                Your application is awaiting the <strong>Director General</strong> review.
                             @else
                                 Your application status: <strong class="text-capitalizes">{{$status}}</strong>
                             @endif
