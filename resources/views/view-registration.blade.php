@@ -122,13 +122,13 @@
                                     <label for="certification_start_date">Certification dates from</label>
                                     <input type="date" name="certification_start_date"
                                            id="certification_start_date"
-                                           value="{{$registration->certification_start_date->format('Y-m-d')}}"
+                                           value="{{$registration->certification_start_date ? $registration->certification_start_date->format('Y-m-d') : ''}}"
                                            class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="certification_end_date">Certification dates to</label>
                                     <input type="date" name="certification_end_date"
-                                           value="{{$registration->certification_end_date->format('Y-m-d')}}"
+                                           value="{{$registration->certification_end_date ? $registration->certification_end_date->format('Y-m-d') : ''}}"
                                            id="certification_end_date" class="form-control">
                                 </div>
                             </div>
