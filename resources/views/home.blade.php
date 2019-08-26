@@ -26,12 +26,13 @@
                     @if(auth()->user()->registered)
                         <div class="alert alert-danger text-left">
                             @php
-                                $status = auth()->user()->registration->application_status
+                                $status = auth()->user()->registration->application_status;
+                            $provisional = auth()->user()->registration->provisional;
                             @endphp
 
                             @if($status == 'draft')
                                 Your application is still a <strong>draft</strong>, please review and submit.
-                            @elseif($status !== 'pending')
+                            @elseif($status !== 'pending' && !$provisional)
                                 Your application status: <strong class="text-capitalizes">{{$status}}</strong>.
 
                                 @if($status !== 'approved')
@@ -57,10 +58,10 @@
                     @if(auth()->user()->is_dg)
                         <div class="alert alert-danger text-left">
                             You have
-                                <a href="{{route('applications.filter',['provisional' => 1])}}">
-                                    <strong> <u>{{$provisional}} applications</u>  </strong>
-                                </a>
-                                awaiting your approval.
+                            <a href="{{route('applications.filter',['provisional' => 1])}}">
+                                <strong> <u>{{$provisional}} applications</u>  </strong>
+                            </a>
+                            awaiting your approval.
                         </div>
                     @endif
                 </div>
