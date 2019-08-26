@@ -187,8 +187,6 @@ class RegistrationController extends Controller
             ]);
 
             Mail::to($applicant)->send(new NSTApplicationUpdate($registration));
-
-            return redirect()->route('home')->with('notification','Application status successfully updated!');
         }else{
             $registration->update([
                 'provisional' => 1,
@@ -201,7 +199,7 @@ class RegistrationController extends Controller
 
         Log::add("$name updated $company application status to $status");
 
-        return back()->with('notification','Application status successfully updated!');
+        return redirect()->route('home')->with('notification','Application status successfully updated!');
     }
 
     public function updateCategory(Registration $registration,Request $request)
