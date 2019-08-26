@@ -66,6 +66,11 @@ class RegistrationController extends Controller
 
         $registration  = auth()->user()->registration;
 
+        return redirect()->route('applications.review',$registration);
+    }
+
+    public function review(Registration $registration)
+    {
         return view('review',compact('registration'));
     }
 
