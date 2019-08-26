@@ -104,20 +104,30 @@
                         {{--Seed Info--}}
                         @if($registration->applicant->seedCompany())
                             <tr>
+                               @php
+                                   $crops = is_array($registration->list_of_crop_to_be_handled) ?
+                                   $registration->list_of_crop_to_be_handled :
+                                   unserialize($registration->list_of_crop_to_be_handled)
+                               @endphp
                                 <td>List of crops to be handled</td>
                                 <td>
-                                    @foreach($registration->list_of_crop_to_be_handled as $key => $crops)
-                                        {{$crops}}{{$key == count($registration->list_of_crop_to_be_handled) - 1 ? '' : ','}}
+                                    @foreach($crops as $key => $crop)
+                                        {{$crop}}{{$key == count($crops) - 1 ? '' : ','}}
                                     @endforeach
                                 </td>
                             </tr>
                         @else
                             <tr>
+                                @php
+                                    $crops = is_array($registration->list_of_crop_to_be_handled) ?
+                                    $registration->list_of_crop_to_be_handled :
+                                    unserialize($registration->list_of_crop_to_be_handled)
+                                @endphp
                                 <td>List of crops to be handled</td>
                                 <td>
-                                    @foreach($registration->list_of_crop_to_be_handled as $key => $crop)
+                                    @foreach($crops as $key => $crop)
                                         @if($key != 'others')
-                                            {{$crop}} {{$key == count($registration->list_of_crop_to_be_handled) - 2 ? '' : ','}}
+                                            {{$crop}} {{$key == count($crops) - 2 ? '' : ','}}
                                         @endif
                                     @endforeach
                                 </td>
@@ -125,10 +135,15 @@
                         @endif
                         @if(!$registration->applicant->seedCompany())
                             <tr>
+                                @php
+                                    $crops = is_array($registration->list_of_crop_to_be_handled['others']) ?
+                                    $registration->list_of_crop_to_be_handled['others'] :
+                                    unserialize($registration->list_of_crop_to_be_handled['others'])
+                                @endphp
                                 <td>Other crops to be handled</td>
                                 <td>
-                                    @foreach($registration->list_of_crop_to_be_handled['others'] as $key => $crop)
-                                        {{$crop}} {{$key == count($registration->list_of_crop_to_be_handled['others']) - 1 ? '' : ','}}
+                                    @foreach($crops as $key => $crop)
+                                        {{$crop}} {{$key == count($crops) - 1 ? '' : ','}}
                                     @endforeach
                                 </td>
                             </tr>
@@ -186,10 +201,15 @@
                                 <td>{{$registration->farm_machinery_implementation}}</td>
                             </tr>
                         @endif
-                        @foreach($registration->other_facilities_available['name'] as $key => $facility)
+                            @php
+                                $facilities = is_array($registration->other_facilities_available) ?
+                                $registration->other_facilities_available :
+                                unserialize($registration->other_facilities_available);
+                            @endphp
+                        @foreach($facilities['name'] as $key => $facility)
                             <tr>
                                 <td>{{$facility}} (qty)</td>
-                                <td>{{ $registration->other_facilities_available['qty'][$key] }}</td>
+                                <td>{{ $facilities['qty'][$key] }}</td>
                             </tr>
                         @endforeach
                     </table>
@@ -222,8 +242,13 @@
 
                     @if(!$registration->applicant->seedCompany())
                         <h4>Training</h4>
+                        @php
+                            $trainings = is_array($registration->trainings) ?
+                            $registration->trainings :
+                            unserialize($registration->trainings);
+                        @endphp
                         @if($registration->trainings_received === 'yes')
-                            @foreach($registration->trainings['crop_trained'] as  $key => $training)
+                            @foreach($trainings['crop_trained'] as  $key => $training)
                                 <table class="table table-bordered">
                                     <tr>
                                         <td>Training</td>
@@ -235,15 +260,15 @@
                                     </tr>
                                     <tr>
                                         <td>Organizer institute</td>
-                                        <td>{{$registration->trainings['organizer_institute'][$key]}}</td>
+                                        <td>{{$trainings['organizer_institute'][$key]}}</td>
                                     </tr>
                                     <tr>
                                         <td>Organizer name</td>
-                                        <td>{{$registration->trainings['organizer_name'][$key]}}</td>
+                                        <td>{{$trainings['organizer_name'][$key]}}</td>
                                     </tr>
                                     <tr>
                                         <td>Date of training</td>
-                                        <td>{{$registration->trainings['date_of_training'][$key]}}</td>
+                                        <td>{{$trainings['date_of_training'][$key]}}</td>
                                     </tr>
                                     <tr>
                                         <td>Evidence of training</td>
