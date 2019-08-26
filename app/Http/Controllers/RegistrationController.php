@@ -46,13 +46,12 @@ class RegistrationController extends Controller
             $data['evidence_of_inc'] = $this->uploadEvidenceOfIncorporation($request);
         }
 
-        if(auth()->user()->communitySeedProducer()) {
+        if(!auth()->user()->seedCompany()) {
             if(isset($request->file('trainings')['evidence'])) {
                 $data['trainings']['evidence'] = $this->uploadEvidenceOfTraining($request);
             }
         }
 
-        dd($data);
         if(isset($data['trainings'])) {
             $data['trainings'] = serialize($data['trainings']);
         }
