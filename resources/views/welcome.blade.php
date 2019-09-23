@@ -4,7 +4,7 @@
     <div class="body_contain">
         <div class="container-fluid">
             <div class="site-heading">
-                <h1>NASC Tracker Application</h1>
+                <h1>National Seed Tracker Application</h1>
             </div>
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">

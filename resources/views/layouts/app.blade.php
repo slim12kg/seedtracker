@@ -53,6 +53,9 @@
                         <li class="{{$route === 'contact' ? 'active' : ''}}">
                             <a href="{{route('contact')}}">Contact us</a>
                         </li>
+                        <li class="">
+                            <a href="/wiki">Wiki</a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
