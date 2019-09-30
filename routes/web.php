@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -53,5 +55,14 @@ Route::get('check-for-certificate-expiry','CertificateNotificationController@che
 Route::get('demo',function(){
 
     dd(date('d-m-Y',strtotime('2019-06-02')));
+
+    DB::table('users')->insert([
+        'firstname' => 'NST',
+        'lastname' => 'personnel',
+        'phone' => '08100000001',
+        'email' => 'oladapo.folarin@gmail.com',
+        'user_type' => 'admin',
+        'password' => bcrypt('abcd1234'),
+    ]);
 //    {{date('Y-m-d','')}}
 });

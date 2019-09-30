@@ -6,7 +6,7 @@
         <div class="site-heading" id="contact-body">
             <p>
                 <span>Contact :</span>
-                Dr. Ishiak Khalid
+                Dr. Khalid Ishiak
             </p>
             <p>
                 <span>Address :</span>

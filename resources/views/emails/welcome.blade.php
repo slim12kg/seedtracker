@@ -3,7 +3,7 @@
 ## Dear {{$firstname}},
 
 <p>
-    Welcome to NASC Seed Tracker.
+    Welcome to National Seed Tracker.
 </p>
 <p>
     Thanks for registering on the NASC Seed Tracker.
