@@ -57,7 +57,7 @@ Route::get('demo',function(){
     DB::table('users')->insert([
         'firstname' => 'NST',
         'lastname' => 'personnel',
-        'phone' => '08100000001',
+        'phone' => '08100000005',
         'email' => 'oladapo.folarin@gmail.com',
         'user_type' => 'admin',
         'password' => bcrypt('abcd1234'),
