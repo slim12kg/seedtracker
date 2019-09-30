@@ -54,8 +54,6 @@ Route::get('check-for-certificate-expiry','CertificateNotificationController@che
 
 Route::get('demo',function(){
 
-    dd(date('d-m-Y',strtotime('2019-06-02')));
-
     DB::table('users')->insert([
         'firstname' => 'NST',
         'lastname' => 'personnel',
