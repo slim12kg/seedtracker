@@ -23,7 +23,7 @@
             {{--</p>--}}
             <p>
                 <span>Website :</span>
-                <a href="https://seedcouncil.gov.ng/">www.seedcouncil.gov.org</a>
+                <a href="https://seedcouncil.gov.ng/">www.seedcouncil.gov.ng</a>
             </p>
             <p>
                 <span>Contact email address :</span>
