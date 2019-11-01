@@ -53,7 +53,6 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'phone' => 'required|string|max:255|unique:users',
             'user_type' => 'required|string|max:255|in:seed company,community seed producer,research organization',
-            'type_category' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -67,15 +66,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user =  User::create([
+        $payload = [
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'user_type' => $data['user_type'],
-            'type_category' => $data['type_category'],
             'password' => bcrypt($data['password']),
-        ]);
+        ];
+        
+        if(isset($data['type_category'])){
+            $payload['type_category'] = $data['type_category'];
+        }
+
+        $user =  User::create($payload);
 
         $user->updateRegistration([
             'applicant_firstname' => $data['firstname'],

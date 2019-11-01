@@ -311,7 +311,7 @@
                     seedCompany.addClass('d-none');
                     researchOrg.addClass('d-none');
                     researchOrg.addClass('d-none');
-                    catField.removeAttribute('required');
+                    catField.attr('required',false);
                     break;
                 default:
                     regType.addClass('d-none');
