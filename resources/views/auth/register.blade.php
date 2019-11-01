@@ -286,6 +286,7 @@
             var researchOrg = $('.research_org');
             var comProducer = $('.com_seed_company');
             var regType = $('#type-fields');
+            var catField = $('[name=type_category]');
 
             switch (type){
                 case "seed company":
@@ -294,6 +295,7 @@
                     seedCompany.removeClass('d-none');
                     researchOrg.addClass('d-none');
                     researchOrg.addClass('d-none');
+                    catField.attr('required',true);
                     break;
                 case "research organization":
                     regType.removeClass('d-none');
@@ -301,6 +303,7 @@
                     researchOrg.removeClass('d-none');
                     seedCompany.addClass('d-none');
                     comProducer.addClass('d-none');
+                    catField.attr('required',true);
                     break;
                 case "community seed producer":
                     regType.addClass('d-none');
@@ -308,6 +311,7 @@
                     seedCompany.addClass('d-none');
                     researchOrg.addClass('d-none');
                     researchOrg.addClass('d-none');
+                    catField.removeAttribute('required');
                     break;
                 default:
                     regType.addClass('d-none');
